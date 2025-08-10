@@ -1,0 +1,219 @@
+<div class="container-fluid fancy-fade-in">
+    <div class="row">
+        <!-- Header -->
+
+        <!-- Sidebar -->
+        <div class="col-md-3 sidebar-container">
+            <div class="card text-white shadow-lg h-100 fancy-sidebar p-4">
+                <div class="profile-section text-center mb-4">
+                    <h5 class="mt-2">Welcome, {{tourist.name || 'Traveler'}}</h5>
+                </div>
+                <h4 class="fw-bold mb-4 border-bottom pb-2">🏨 Tourist Dashboard</h4>
+                <div class="d-grid gap-3">
+                    <a routerLink="/tour-packages" class="btn btn-lg rounded-pill fancy-btn" style="--btn-index: 1;">
+                        📖 Packages
+                    </a>
+                    <a routerLink="/hotel-reservation" class="btn  btn-lg rounded-pill fancy-btn"
+                        style="--btn-index: 2;">
+                        🏨 Hotel Offers
+                    </a>
+                    <button class="btn btn-lg rounded-pill fancy-btn" (click)="logout()" style="--btn-index: 3;">
+                        🚪 Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9 pt-5 px-4 main-content my-5">
+
+            <header class="header-section">
+                <h1 class="header-title">Your Travel Adventure Hub</h1>
+                <p class="header-subtitle">Explore, Book, and Review Your Journeys</p>
+            </header>
+            <!-- Performance Cards -->
+            <div class="row mb-4 g-3">
+                <div class="col-md-4">
+                    <div class="fancy-card text-center position-relative" style="--card-index: 1;">
+                        <h6>Active Bookings</h6>
+                        @defer (when isTouristReq) {
+                        <h3>{{tourist.bookings.length}}</h3>
+                        } @placeholder {
+                        <div class="loading-container">
+                            <mat-progress-spinner mode="indeterminate" diameter="40"
+                                color="accent"></mat-progress-spinner>
+                        </div>
+                        } @loading (minimum 3s) {
+                        <div class="loading-container">
+                            <mat-progress-spinner mode="indeterminate" diameter="40"
+                                color="accent"></mat-progress-spinner>
+                        </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="fancy-card text-center" style="--card-index: 2;">
+                        <h6>Number of Reviews</h6>
+                        @defer (when isTouristReq) {
+                        <h3>{{tourist.reviews.length}}</h3>
+                        } @placeholder {
+                        <div class="loading-container">
+                            <mat-progress-spinner mode="indeterminate" diameter="40"
+                                color="accent"></mat-progress-spinner>
+                        </div>
+                        } @loading (minimum 3s) {
+                        <div class="loading-container">
+                            <mat-progress-spinner mode="indeterminate" diameter="40"
+                                color="accent"></mat-progress-spinner>
+                        </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="fancy-card text-center" style="--card-index: 3;">
+                        <h6>Total Spent</h6>
+                        @defer (when isTouristReq) {
+                        <h3>${{price}}</h3>
+                        } @placeholder {
+                        <div class="loading-container">
+                            <mat-progress-spinner mode="indeterminate" diameter="40"
+                                color="accent"></mat-progress-spinner>
+                        </div>
+                        } @loading (minimum 3s) {
+                        <div class="loading-container">
+                            <mat-progress-spinner mode="indeterminate" diameter="40"
+                                color="accent"></mat-progress-spinner>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Filters -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h5 class="section-heading">Filter Bookings</h5>
+                    <div class="btn-group mb-3" role="group">
+                        <button class="btn btn-outline bg-success fancy-btn mx-1" (click)="filterBookings('Pending')"
+                            [class.active]="filteredStatus === 'Pending'">Pending</button>
+                        <button class="btn btn-outline bg-warning fancy-btn mx-1" (click)="filterBookings('Confirmed')"
+                            [class.active]="filteredStatus === 'Confirmed'">Confirmed</button>
+                        <button class="btn btn-outline bg-danger fancy-btn mx-1" (click)="filterBookings('Cancelled')"
+                            [class.active]="filteredStatus === 'Cancelled'">Cancelled</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bookings Table -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card fancy-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Your Bookings</h5>
+                            <div class="table-responsive">
+                                <table class="table fancy-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Booking ID</th>
+                                            <th>Date</th>
+                                            <th>Tour Guide</th>
+                                            <th>Hotel</th>
+                                            <th>Status</th>
+                                            <th>Price</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (booking of filteredBookings; track booking.bookingID; let i = $index) {
+                                        <tr class="fancy-table-row" style="--row-index: {{i}};">
+                                            <td>{{booking.bookingID}}</td>
+                                            <td>{{booking.bookingDate | date:'shortDate'}}</td>
+                                            <td>{{booking.tourGuideName}}</td>
+                                            <td>{{booking.hotelName}}</td>
+                                            <td>{{booking.status}}</td>
+                                            <td>${{booking.totalPrice}}</td>
+                                            <td>
+                                                <button class="btn btn-sm bg-danger fancy-btn"
+                                                    (click)="openDeleteDialog(booking.bookingID)">Delete</button>
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Reviews -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card fancy-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Recent Reviews</h5>
+                            <div class="review-carousel">
+                                @for (review of tourist.reviews.slice(0, 3); track review.reviewId; let i = $index) {
+                                <div class="review-item" style="--review-index: {{i}};">
+                                    <p class="review-text">"{{review.comment || 'Great experience!'}}"</p>
+                                    <p class="review-meta">Rating: {{review.rating || 5}}/5 - {{review.reviewDate|
+                                        date:'shortDate'}}</p>
+                                </div>
+                                }
+                                @if (!tourist.reviews.length) {
+                                <p class="text-center">No reviews yet. Share your experience!</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trip Highlights -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card fancy-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Trip Highlights</h5>
+                            <div class="row g-3">
+                                @for (booking of tourist.bookings.slice(0, 3); track booking.bookingID; let i = $index)
+                                {
+                                <div class="col-md-4">
+                                    <div class="highlight-item" style="--highlight-index: {{i}};">
+                                        <h6>{{booking.packageName}}</h6>
+                                        <p>Guide: {{booking.tourGuideName}}</p>
+                                        <p>Hotel: {{booking.hotelName}}</p>
+                                    </div>
+                                </div>
+                                }
+                                @if (!tourist.bookings.length) {
+                                <p class="text-center">No bookings yet. Start exploring!</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card fancy-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Monthly Bookings</h5>
+                            <canvas #barChartCanvas></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card fancy-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Booking Status Distribution</h5>
+                            <canvas #pieChartCanvas></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

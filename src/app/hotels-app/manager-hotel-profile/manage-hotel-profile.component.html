@@ -1,0 +1,113 @@
+<div class="manage-profile py-5">
+    <div class="container bg-white p-5 rounded-4 shadow-lg animate__animated animate__fadeIn">
+        <h1 class="text-center text-primary fw-bold mb-3">🏨 Hotel Profile</h1>
+        <p class="text-center text-muted mb-5">Manage your hotel details and photos</p>
+
+        @defer (when isHotelReqFinished) {
+        <div class="photo-slider mb-4">
+            @for (item of hotel.photoUrls; track $index) {
+            <div class="photo">
+                <img [src]="item" alt="Profile Photo" />
+            </div>
+            }
+        </div>
+        } @placeholder {
+        <div class="spinner">
+            <mat-progress-spinner diameter="40" color="accent" mode="indeterminate"></mat-progress-spinner>
+        </div>
+        }@loading(minimum 3s) {
+        <div class="spinner">
+            <mat-progress-spinner diameter="40" color="accent" mode="indeterminate"></mat-progress-spinner>
+        </div>
+        }
+
+        <h2 class="text-secondary fw-semibold mb-4">🖼 Profile Images</h2>
+        <form (ngSubmit)="editProfile()" class="row g-4">
+            @defer (when isHotelReqFinished) {
+
+            <div class="col-md-12">
+                <label>Hotel Name</label>
+                <input type="text" class="form-control" placeholder="Enter Hotel Name" [(ngModel)]="hotel.hotelName"
+                    name="hotel" />
+            </div>
+            }
+            @placeholder {
+            <div class="spinner">
+                <mat-progress-spinner diameter="40" color="accent" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            }@loading(minimum 3s) {
+            <div class="spinner">
+                <mat-progress-spinner diameter="40" color="accent" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            }
+
+            <div class="col-md-12">
+                <label>Hotel Address</label>
+                <div id="map" class="fancy-map rounded">
+                </div>
+            </div>
+            @defer (when isHotelReqFinished) {
+
+            <div class="col-12">
+                <label>Hotel Description</label>
+                <textarea class="form-control" placeholder="Enter Description" rows="3" [(ngModel)]="hotel.description"
+                    name="description"></textarea>
+            </div>
+            }
+            @placeholder {
+            <div class="spinner">
+                <mat-progress-spinner diameter="40" color="accent" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            }@loading(minimum 3s) {
+            <div class="spinner">
+                <mat-progress-spinner diameter="40" color="accent" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            }
+            @defer (when isHotelReqFinished) {
+
+            <div class="col-md-6">
+                <label>Hotel Email</label>
+                <input type="email" class="form-control" placeholder="Enter Email" [(ngModel)]="hotel.contactEmail"
+                    name="email" />
+            </div>
+            }
+            @placeholder {
+            <div class="spinner">
+                <mat-progress-spinner diameter="40" color="accent" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            }@loading(minimum 3s) {
+            <div class="spinner">
+                <mat-progress-spinner diameter="40" color="accent" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            }
+
+            @defer (when isHotelReqFinished) {
+
+            <div class="col-md-6">
+                <label>Hotel Phone</label>
+                <input type="tel" class="form-control" placeholder="Enter Phone" [(ngModel)]="hotel.contactPhone"
+                    name="phone" />
+            </div>
+            }
+            @placeholder {
+            <div class="spinner">
+                <mat-progress-spinner diameter="40" color="accent" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            }@loading(minimum 3s) {
+            <div class="spinner">
+                <mat-progress-spinner diameter="40" color="accent" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            }
+
+            <div class="col-12">
+                <label>Upload Photos</label>
+                <input type="file" class="form-control file-input-fancy" multiple (change)="addPhotosToForm($event)" />
+            </div>
+
+            <div class="text-end mt-4">
+                <button class="btn btn-primary px-4 py-2 rounded-pill shadow" type="submit">💾 Save Changes</button>
+            </div>
+        </form>
+
+    </div>
+</div>

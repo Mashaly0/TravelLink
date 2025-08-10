@@ -1,0 +1,58 @@
+<!-- Start Of Create Package  -->
+<div class="create-room py-5 bg-light">
+    <div class="container">
+        <div class="card shadow-lg rounded-4 p-5 bg-white">
+            <h1 class="display-5 fw-bold text-primary mb-3">Add New Room</h1>
+            <p class="text-muted fs-5">Follow the steps below to add a new room for your hotel.</p>
+
+            <div class="room-info mt-4">
+                <h2 class="text-dark fw-semibold border-bottom pb-2 mb-5">Room Information</h2>
+
+                <h4 class="text-success mb-3">Room Photos</h4>
+                @if(photoPreviews.length !== 0){
+                <h5 class="text-secondary mt-4 mb-3">Preview Images</h5>
+                <div class="photo-slider mb-4">
+                    @for (item of photoPreviews; track $index ; let i = $index) {
+                    <div class="photo position-relative shadow">
+                        <img [src]="item" alt="Profile Photo" class="img-fluid rounded" />
+                        <button class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2"
+                            (click)="removeImage(i)">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </div>
+                    }
+                </div>
+                }
+                @else {
+                <h5 class="text-danger mt-4 mb-5">Room has no photos. Please add some!</h5>
+                }
+
+                <form (ngSubmit)="createNewRoom()" class="needs-validation" novalidate>
+                    <div class="form-group mb-4">
+                        <label for="roomType" class="form-label">Room Type</label>
+                        <input id="roomType" type="text" class="form-control" placeholder="Enter Room Type"
+                            [(ngModel)]="room.roomType" name="type" required>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="roomPrice" class="form-label">Price Per Night (USD)</label>
+                        <input id="roomPrice" type="number" class="form-control" placeholder="Enter Room Price"
+                            [(ngModel)]="room.pricePerNight" name="price" required>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="images" class="form-label">Upload Room Images</label>
+                        <input type="file" class="form-control" id="images" multiple (change)="addRoomImages($event)"
+                            #fileInput>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit"
+                            class="btn btn-outline-primary px-5 py-2 rounded-pill fw-bold shadow-sm">Next</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Of Create Package  -->

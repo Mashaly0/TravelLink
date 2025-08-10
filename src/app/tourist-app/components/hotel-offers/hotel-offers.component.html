@@ -1,0 +1,57 @@
+<div class="hotel-offers-container">
+  <h2 class="text-center mb-4" style="color: #c68919;">Hotel Offers</h2>
+  <div *ngIf="loading" class="text-center my-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <div *ngIf="error" class="alert alert-danger text-center">{{ error }}</div>
+  <div *ngIf="!loading && !error">
+    <!-- Filters -->
+    <div class="row mb-4 justify-content-center">
+      <div class="col-md-3 mb-2">
+        <label>Location</label>
+        <select class="form-select" (change)="updateFilter($event, 'city')">
+          <option value="All">All</option>
+          <option *ngFor="let city of uniqueCities" [value]="city">{{ city }}</option>
+        </select>
+      </div>
+      <div class="col-md-3 mb-2">
+        <label>Star Rating</label>
+        <select class="form-select" (change)="updateFilter($event, 'starRating')">
+          <option value="All">All</option>
+          <option value="5">5 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="2">2 Stars</option>
+          <option value="1">1 Star</option>
+        </select>
+      </div>
+      <div class="col-md-3 mb-2">
+        <label>Price Range</label>
+        <select class="form-select" (change)="updateFilter($event, 'price')">
+          <option value="All">All</option>
+          <option value="Above 500$">Above 500$</option>
+          <option value="300$-500$">300$-500$</option>
+          <option value="Less Than 300$">Less Than 300$</option>
+        </select>
+      </div>
+    </div>
+    <!-- End Filters -->
+    <div *ngIf="filteredHotels.length === 0" class="text-center text-muted">No hotel offers available.</div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col" *ngFor="let hotel of filteredHotels">
+        <div class="card h-100 shadow-sm">
+          <img *ngIf="hotel.photoUrls && hotel.photoUrls.length" [src]="hotel.photoUrls[0]" class="card-img-top" alt="Hotel Photo">
+          <div class="card-body">
+            <h5 class="card-title">{{ hotel.hotelName }}</h5>
+            <p class="card-text mb-1"><i class="bi bi-geo-alt"></i> {{ hotel.address }}</p>
+            <p class="card-text mb-1"><i class="bi bi-star-fill text-warning"></i> {{ hotel.rating || 'N/A' }} / 5</p>
+            <p class="card-text text-muted">{{ hotel.description }}</p>
+            <button class="btn btn-outline-primary btn-sm mt-2" (click)="viewDetails(hotel)">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

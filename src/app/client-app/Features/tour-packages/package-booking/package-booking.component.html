@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2 class="title">Book a Package</h2>
+  <div *ngIf="errorMessage" class="alert alert-error">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+  <div *ngIf="!package && !errorMessage" class="alert alert-loading">Loading package details...</div>
+  <div *ngIf="package" class="booking-section">
+    <div class="package-info card">
+      <h3 class="package-title">{{ package.packageName }}</h3>
+      <p class="package-detail"><strong>Total Price:</strong> ${{ package.price }}</p>
+      <p class="package-detail"><strong>Valid Booking Dates:</strong> {{ package.startDate | date:'mediumDate' }} to {{
+        package.endDate | date:'mediumDate' }}</p>
+    </div>
+    <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="booking-form">
+      <div class="form-group">
+        <label for="bookingDate" class="form-label">Select Booking Date</label>
+        <select id="bookingDate" formControlName="bookingDate" class="form-input">
+          <option value="" disabled>Select a date</option>
+          <option *ngFor="let date of availableDates" [value]="date.toISOString()">{{ date | date:'mediumDate' }}
+          </option>
+        </select>
+        <div *ngIf="bookingForm.get('bookingDate')?.touched && bookingForm.get('bookingDate')?.errors"
+          class="error-message">
+          <span *ngIf="bookingForm.get('bookingDate')?.errors?.['required']">Booking date is required.</span>
+        </div>
+      </div>
+      <div class="button-group">
+        <button type="submit" class="btn btn-primary" [disabled]="bookingForm.invalid">Submit Booking</button>
+        <button type="button" class="btn btn-secondary" [routerLink]="['/package-details', packageId]">Back</button>
+      </div>
+    </form>
+  </div>
+</div>

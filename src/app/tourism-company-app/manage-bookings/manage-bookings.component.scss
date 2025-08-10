@@ -1,0 +1,149 @@
+.back-button-container {
+    margin-bottom: 20px;
+    animation: fadeInSlide 0.6s ease-in-out;
+}
+
+.back-btn {
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.back-btn:hover {
+    background-color: #e7f1ff;
+    color: #0056b3;
+    transform: translateX(-3px);
+}
+
+.booking-management {
+    background: #f9fafb;
+    padding: 40px 0;
+    min-height: 100vh;
+    animation: fadeInPage 0.8s ease-in-out both;
+}
+
+@keyframes fadeInPage {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.booking-management h1,
+.booking-management h2 {
+    font-weight: 700;
+    color: #2c3e50;
+    animation: fadeInSlide 1s ease-in-out;
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.package-card {
+    height: 100px;
+    border: none;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.6s ease-in-out both;
+}
+
+.package-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.package-thumb {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    flex-shrink: 0;
+    transition: transform 0.4s ease;
+}
+
+.package-card:hover .package-thumb {
+    transform: scale(1.05) rotate(1deg);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: fadeInText 0.8s ease-in-out both;
+}
+
+.delete-btn {
+    margin-right: 8px;
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+        transform: translateX(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+.package-card:hover .card-title {
+    color: #0056b3;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

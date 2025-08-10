@@ -1,0 +1,466 @@
+/* ===== General Container and Layout ===== */
+.container {
+    max-width: 1200px;
+    margin: 48px auto;
+    padding: 20px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(180deg, #f7fafc 0%, #ffffff 100%);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-out;
+}
+
+.title {
+    font-size: 3rem;
+    color: #1a202c;
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    position: relative;
+    animation: slideIn 0.7s ease-out;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 100px;
+        height: 5px;
+        background: #d4a017;
+        /* Goldenrod theme */
+        margin: 12px auto;
+        border-radius: 3px;
+        animation: underlineGrow 0.6s ease-out;
+    }
+}
+
+.no-results {
+    text-align: center;
+    color: #4a5568;
+    font-size: 1.5rem;
+    font-weight: 600;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    color: #1a202c;
+    font-weight: 600;
+    margin-bottom: 20px;
+    animation: slideIn 0.7s ease-out;
+}
+
+/* ===== Guides List ===== */
+.guides-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 32px;
+    margin-bottom: 32px;
+}
+
+/* ===== Guide Item ===== */
+.guide-item {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Ensure equal height */
+    justify-content: space-between;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: cardFadeIn 0.8s ease-out;
+
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 8px 24px rgba(212, 160, 23, 0.15);
+    }
+}
+
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Image Slider ===== */
+.image-slider {
+    position: relative;
+    width: 180px;
+    max-height: 120px;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #e2e8f0;
+
+    .guide-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        animation: imageFadeIn 1s ease-out;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+
+@keyframes imageFadeIn {
+    from {
+        opacity: 0;
+        filter: blur(6px);
+    }
+
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+/* ===== Guide Details ===== */
+.guide-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .guide-title {
+        font-size: 1.75rem;
+        color: #d4a017;
+        /* Goldenrod theme */
+        margin-bottom: 1rem;
+        font-weight: 700;
+        animation: fadeIn 0.9s ease-out;
+    }
+
+    .guide-detail {
+        font-size: 1rem;
+        color: #4a5568;
+        margin-bottom: 12px;
+        animation: fadeIn 1s ease-out;
+
+        strong {
+            color: #1a202c;
+            font-weight: 600;
+        }
+
+        svg {
+            width: 16px;
+            height: 16px;
+            fill: #d4a017;
+            /* Goldenrod theme */
+            margin-left: 6px;
+            animation: pulse 1.2s infinite;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ===== Selected Date and Nights Number ===== */
+.selected-date,
+.nights-number {
+    margin-top: 12px;
+    animation: slideUp 0.6s ease-out;
+}
+
+.nights-number {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+
+    button {
+        background: #d4a017;
+        /* Goldenrod theme */
+        color: #ffffff;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 50%;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        width: 36px;
+        height: 36px;
+        box-shadow: 0 2px 4px rgba(212, 160, 23, 0.3);
+
+        &:hover:not(:disabled) {
+            background: #e6b800;
+            /* Lighter goldenrod */
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(212, 160, 23, 0.5);
+        }
+
+        &:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+        }
+    }
+
+    input[type='number'] {
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 8px;
+        font-size: 1rem;
+        width: 80px;
+        text-align: center;
+        transition: all 0.3s ease;
+
+        &:focus {
+            border-color: #d4a017;
+            /* Goldenrod theme */
+            box-shadow: 0 0 5px rgba(212, 160, 23, 0.3);
+            transform: translateY(-2px);
+        }
+    }
+}
+
+input[type='date'] {
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    width: 100%;
+
+    &:focus {
+        border-color: #d4a017;
+        /* Goldenrod theme */
+        box-shadow: 0 0 5px rgba(212, 160, 23, 0.3);
+        transform: translateY(-2px);
+    }
+}
+
+/* ===== Button Styling ===== */
+.btn-primary,
+.btn-next {
+    width: auto;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    background: linear-gradient(135deg, #d4a017, #e6b800);
+    /* Goldenrod theme */
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(212, 160, 23, 0.3);
+
+    &:hover:not(:disabled) {
+        background: linear-gradient(135deg, #e6b800, #d4a017);
+        /* Lighter goldenrod */
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(212, 160, 23, 0.5);
+    }
+
+    &:disabled {
+        background: #a0aec0;
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+}
+
+.next-button {
+    text-align: right;
+}
+
+/* ===== Progress Bar ===== */
+.progress-bar-custom {
+    height: 8px;
+    background-color: #e2e8f0;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    width: 100%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar-custom .progress-fill {
+    width: 0%;
+    transition: width 0.4s ease-in-out;
+    height: 100%;
+    background: linear-gradient(135deg, #d4a017, #e6b800);
+    /* Goldenrod theme */
+    border-radius: 50px;
+    box-shadow: 0 2px 6px rgba(212, 160, 23, 0.4);
+    animation: progressPulse 1.5s infinite;
+}
+
+@keyframes progressPulse {
+    0% {
+        box-shadow: 0 2px 6px rgba(212, 160, 23, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 4px 8px rgba(212, 160, 23, 0.6);
+    }
+
+    100% {
+        box-shadow: 0 2px 6px rgba(212, 160, 23, 0.4);
+    }
+}
+
+/* ===== Step Transitions ===== */
+.tour-packages,
+.rooms,
+.guides,
+.final-booking {
+    animation: slideUp 0.6s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes underlineGrow {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100px;
+    }
+}
+
+/* ===== Final Booking Card ===== */
+.final-booking .card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.final-booking .card strong {
+    color: #1a202c;
+    font-weight: 600;
+}
+
+.final-booking .card span {
+    color: #4a5568;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #2f855a, #48bb78);
+
+    /* Green gradient */
+    &:hover {
+        background: linear-gradient(135deg, #48bb78, #2f855a);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(47, 133, 90, 0.5);
+    }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 1024px) {
+    .guides-list {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    .image-slider {
+        width: 100%;
+        max-height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+        margin: 32px auto;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 1.2rem;
+    }
+
+    .guide-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .image-slider {
+        width: 100%;
+        max-height: 120px;
+    }
+
+    .next-button {
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.1rem;
+    }
+
+    .guides-list {
+        grid-template-columns: 1fr;
+    }
+
+    .guide-item {
+        padding: 16px;
+    }
+
+    .btn-primary,
+    .btn-next {
+        width: 100%;
+    }
+}

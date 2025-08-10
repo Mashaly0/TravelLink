@@ -1,0 +1,385 @@
+.container-fluid {
+    padding: 0;
+    background: #ffffff;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+.header-section {
+    text-align: center;
+    padding: 40px 20px;
+    animation: fadeInDown 1s ease-out;
+}
+
+.header-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000000;
+}
+
+.header-subtitle {
+    font-size: 1.2rem;
+    color: #000000;
+    /* Changed to black */
+    margin-top: 10px;
+}
+
+.sidebar-container {
+    min-height: 100vh;
+}
+
+.fancy-sidebar {
+    background-color: goldenrod;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideInLeft 0.8s ease-out;
+    backdrop-filter: blur(8px);
+}
+
+.profile-section {
+    animation: fadeIn 1s ease-out;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #9c27b0;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.fancy-sidebar h4 {
+    color: #fff;
+    /* Changed to black */
+    border-bottom: 2px solid #9c27b0;
+    animation: fadeIn 1s ease-out;
+}
+
+.fancy-sidebar .fancy-btn {
+    animation: fadeInUp 0.8s ease-out;
+    animation-delay: calc(var(--btn-index) * 0.1s);
+}
+
+.fancy-card {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
+    color: #000000;
+    /* Changed to black */
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease, background 0.4s ease;
+    animation: cardPopIn 0.8s ease-out;
+    animation-delay: calc(var(--card-index) * 0.2s);
+}
+
+.fancy-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+.fancy-card h6,
+.fancy-card .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #000000;
+    /* Changed to black */
+}
+
+.fancy-card h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000000;
+    /* Changed to black */
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.fancy-btn {
+    background: #ffffff;
+    color: black;
+    /* Changed to black */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border-radius: 50px;
+}
+
+.fancy-btn:hover {
+    transform: translateY(-3px);
+}
+
+
+.fancy-btn:hover::after {
+    width: 600px;
+    height: 600px;
+}
+
+.btn-group .fancy-btn {
+    border-radius: 10px;
+}
+
+.fancy-table {
+    color: #000000;
+    overflow: scroll;
+}
+
+.fancy-table thead {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.fancy-table th {
+    font-weight: 600;
+    color: #000000;
+    /* Changed to black */
+}
+
+.fancy-table-row {
+    animation: fadeInUp 0.8s ease-out;
+    animation-delay: calc(var(--row-index) * 0.1s);
+}
+
+.fancy-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, #7b2cbf, #6a1b9a);
+    transition: width 0.5s ease-in-out;
+    color: #000000;
+    /* Changed to black */
+}
+
+.review-carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: goldenrod yellow;
+    max-height: 200px;
+}
+
+.review-item {
+    flex: 0 0 300px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    animation: reviewFade 0.8s ease-out;
+    animation-delay: calc(var(--review-index) * 0.2s);
+}
+
+.review-text {
+    font-style: italic;
+    color: #000000;
+    /* Changed to black */
+    margin-bottom: 10px;
+}
+
+.review-meta {
+    font-size: 0.9rem;
+    color: #000000;
+    /* Changed to black */
+}
+
+.highlight-item {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: slideInRight 0.8s ease-out;
+    animation-delay: calc(var(--highlight-index) * 0.2s);
+}
+
+.highlight-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+canvas {
+    max-width: 100%;
+    height: 250px !important;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-out;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 80px;
+}
+
+mat-progress-spinner {
+    animation: spin 1.5s linear infinite;
+}
+
+@media (max-width: 767px) {
+    .sidebar-container {
+        display: none;
+    }
+
+    .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .header-title {
+        font-size: 1.8rem;
+    }
+
+    .header-subtitle {
+        font-size: 1rem;
+    }
+
+    .review-carousel {
+        flex-direction: column;
+    }
+
+    .review-item {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .container-fluid {
+        width: 100%;
+    }
+
+    .main-content {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .fancy-card {
+        padding: 10px;
+    }
+
+    .fancy-card h3,
+    .fancy-card .card-title {
+        font-size: 1.5rem;
+    }
+
+    .section-heading {
+        font-size: 1.2rem;
+    }
+
+    .btn-group .fancy-btn {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes cardPopIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes reviewFade {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 12px 30px rgba(123, 44, 191, 0.7);
+    }
+
+    100% {
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+    }
+}

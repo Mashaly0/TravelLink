@@ -1,0 +1,14 @@
+<div class="container-fluid d-flex justify-content-center">
+    <div class="card shadow-lg p-4 reset-card">
+        <h3 class="text-center mb-4 text-primary">Enter Token Sent To Your Email</h3>
+        <form [formGroup]="resetForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="sentToken" class="form-label">Token</label>
+                <input type="text" class="form-control" id="sent token" formControlName="sentToken">
+                <div class="invalid-feedback" *ngIf="isInvalid('newPassword')">Token is required</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="resetForm.invalid">Send Reset Link</button>
+        </form>
+    </div>
+</div>

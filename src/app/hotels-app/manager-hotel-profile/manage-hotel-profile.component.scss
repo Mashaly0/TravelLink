@@ -1,0 +1,191 @@
+.manage-profile {
+    background: linear-gradient(135deg, #f8f9fa, #e0eaff);
+    min-height: 100vh;
+    padding: 3rem 1rem;
+    animation: fadeInPage 0.7s ease-in-out;
+}
+
+/* Headings */
+h1,
+h2 {
+    color: #333;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+    animation: fadeSlideIn 0.6s ease;
+}
+
+/* Label styling */
+label {
+    margin-top: 12px;
+    color: #333;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+/* Form inputs and textarea */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+input[type="file"] {
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.2);
+}
+
+/* File input style */
+.file-input-fancy {
+    height: auto;
+    padding: 12px;
+    background: #f1f4ff;
+    border: 1px dashed #0d6efd;
+    border-radius: 12px;
+    transition: background 0.3s ease;
+}
+
+.file-input-fancy:hover {
+    background: #e6f0ff;
+}
+
+/* Button styling */
+button {
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+/* Spinner center */
+.spinner {
+    width: 100%;
+    position: relative;
+}
+
+.spinner mat-progress-spinner {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Photo Slider enhancements */
+.photo-slider {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 1rem;
+    animation: fadeInSlider 0.8s ease-in-out;
+}
+
+.photo-slider img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #0d6efd;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+}
+
+.photo-slider img:hover {
+    transform: scale(1.07);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.photo {
+    position: relative;
+    animation: fadeInPhoto 0.4s ease;
+}
+
+/* Delete button on photo */
+.photo-slider button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.photo-slider button:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.photo-slider button svg {
+    width: 16px;
+    height: 16px;
+    fill: white;
+}
+
+.fancy-map {
+    height: 250px;
+    background: #dee2e6;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInSlider {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInPhoto {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

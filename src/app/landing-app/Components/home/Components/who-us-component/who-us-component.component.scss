@@ -1,0 +1,175 @@
+.who-we-are {
+    padding: 80px 0;
+    position: relative;
+}
+
+.who-we-are .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.who-we-are .section-header h2 {
+    font-size: 2.5rem;
+    color:var(--bg-red-salsa)
+}
+
+.who-we-are .section-header .subtitle {
+    font-size: 1.8rem;
+    color: #000000;
+}
+
+.about-content {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.about-image {
+    position: relative;
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.about-image:hover img {
+    transform: scale(1.03);
+}
+
+.experience-badge {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(44, 62, 80, 0.9);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.experience-badge span {
+    font-size: 3rem;
+    font-weight: bold;
+    display: block;
+    line-height: 1;
+}
+
+.experience-badge p {
+    margin: 5px 0 0;
+    font-size: var(--fontSize-7)
+}
+
+.about-text {
+    flex: 1;
+    padding-bottom: 38px;
+}
+
+.about-text h3 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.feature {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.feature i {
+    font-size: var(--fontSize-5);
+    color: #e74c3c;
+    margin-bottom: 15px;
+}
+
+.feature h4 {
+    font-size:var(--fontSize-6)
+    margin-bottom 10px;
+    color: #2c3e50;
+}
+
+.feature p {
+    font-size: 1.2rem;
+    margin: 0;
+    color:var(--text-granite-gray)
+}
+
+.signature {
+    margin-top: 30px;
+}
+
+.signature-img {
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.signature-name {
+    font-weight: bold;
+    margin: 0;
+    color: #2c3e50;
+}
+
+.signature-title {
+    margin: 5px 0 0;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+.partners {
+    margin-top: 70px;
+    text-align: center;
+}
+
+.partners h3 {
+    font-size: 1.5rem;
+    color: var(--text-granite-gray)
+    margin-bottom 30px;
+}
+
+.partner-logos {
+  margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+}
+
+.partner-logos img {
+    height: 60px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    filter: grayscale(100%);
+}
+
+.partner-logos img:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+}

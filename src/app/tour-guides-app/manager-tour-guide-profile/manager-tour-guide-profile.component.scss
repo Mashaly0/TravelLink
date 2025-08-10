@@ -1,0 +1,172 @@
+.back-button-container {
+    margin-bottom: 20px;
+    animation: fadeInSlide 0.6s ease-in-out;
+}
+
+.back-btn {
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.back-btn:hover {
+    background-color: #e7f1ff;
+    color: #0056b3;
+    transform: translateX(-3px);
+}
+
+label {
+    margin-top: 12px;
+    color: black;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+h1,
+h2 {
+    color: black;
+}
+
+input {
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+    padding: 8px;
+}
+
+button {
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: #B2D1E5;
+    padding: 10px;
+    font-weight: 500;
+}
+
+
+@media (max-width:767px) {
+
+    .manage-profile .container {
+        padding: 0 20px;
+    }
+
+    .manage-profile .container,
+    .language-labels,
+    .destination-labels {
+        width: 100%;
+    }
+}
+
+@media (max-width:575px) {
+
+    .manage-profile .container,
+    .language-labels,
+    .destination-labels {
+        width: 80%;
+    }
+}
+
+@media (min-width:768px) {
+
+    .manage-profile .container {
+        padding: 0 20px;
+    }
+
+    textarea {
+        width: 100%;
+    }
+}
+
+.spinner {
+    width: 100%;
+    position: relative;
+}
+
+.spinner mat-progress-spinner {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.language-labels,
+.destination-labels {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+}
+
+.language-label,
+.destination-label {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+
+.language-label input,
+.destination-label input {
+    width: 20px;
+    height: 20px;
+}
+
+.language-label label,
+.destination-label label {
+    margin-top: 0;
+}
+
+input[type="file"] {
+    margin-top: 10px;
+    width: 100%;
+    height: 200px;
+}
+
+.photo-slider {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.photo-slider img {
+    height: 100px;
+    border-radius: 7px;
+    width: 100%;
+    border: 1px solid black;
+    object-fit: cover;
+}
+
+.photo {
+    position: relative;
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

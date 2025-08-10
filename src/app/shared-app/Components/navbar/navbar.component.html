@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/tourist">
+      <img src="images/logo.svg" alt="Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/tour-packages">Packages</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/hotel-reservation">Hotels</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/tour-guides">Tour Guides</a>
+        </li>
+        @if (isLoggedIn()) {
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/tourist/new-trip">New Trip</a>
+        </li>
+        <li class="nav-item profile-icon" (click)="showActions()">
+          <i class="fa-solid fa-angle-down"></i>
+        </li>
+        <div class="actions-list">
+          <p routerLink="/{{currentRole()}}/dashboard"><i class="fa-solid fa-inbox"></i> Dashboard</p>
+          <p (click)="logout()"> <i class="fa-solid fa-right-to-bracket"></i> Sign Out</p>
+        </div>
+        <li class="nav-item dashboard">
+          <a class="nav-link" routerLinkActive="active" routerLink="/{{currentRole()}}/dashboard">Dashboard</a>
+        </li>
+        <p (click)="logout()" class="mt-2 logout-btn">Sign Out</p>
+        }@else{
+        <button routerLink="/login" class="btn btn-primary">
+          Login
+        </button>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>

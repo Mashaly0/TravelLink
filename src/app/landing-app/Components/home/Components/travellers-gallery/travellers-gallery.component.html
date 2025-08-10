@@ -1,0 +1,33 @@
+<section class="travelers-gallery">
+  <div class="container">
+    <div class="section-header">
+      <h2>PHOTO GALLERY</h2>
+      <p class="subtitle">PHOTO'S FROM TRAVELLERS</p>
+      <div class="section-description">
+        <p>Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque laudantium. Sit ornare mollitia tenetur, aptent.</p>
+      </div>
+    </div>
+
+    <div class="gallery-grid">
+      <div *ngFor="let item of galleryItems" class="gallery-item" (click)="openLightbox(item)">
+        <img [src]="item.src" [alt]="item.alt">
+        <div class="overlay">
+          <div class="overlay-content">
+            <i class="fas fa-search-plus"></i>
+            <p>{{ item.caption }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="view-more">
+      <a routerLink="/gallery" class="btn">View More Photos</a>
+    </div>
+
+    <!-- Lightbox -->
+    <div *ngIf="selectedImage" id="lightbox" class="active" (click)="closeLightbox()">
+      <img [src]="selectedImage.src">
+      <p>{{ selectedImage.caption }}</p>
+    </div>
+  </div>
+</section>

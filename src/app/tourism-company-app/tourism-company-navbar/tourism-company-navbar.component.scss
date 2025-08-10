@@ -1,0 +1,33 @@
+.tourism-company-navbar .container-fluid {
+    padding: 20px 40px;
+}
+
+.tourism-company-navbar img {
+    width: 35px;
+    height: 30px;
+    margin-right: 15px;
+}
+
+.tourism-company-navbar h1 {
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    margin: auto 0;
+}
+
+.tourist-company-navbar-items {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.tourist-company-navbar-item {
+    padding: 20px;
+}
+
+@media (max-width:767px) {
+    .tourist-company-navbar-items {
+        display: none;
+    }
+}

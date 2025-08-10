@@ -1,0 +1,59 @@
+<div class="container">
+  <h2 class="title">All Tour Guides</h2>
+  <div *ngIf="errorMessage" class="alert alert-error">{{ errorMessage }}</div>
+  <div *ngIf="tourGuides.length === 0 && !errorMessage" class="alert alert-no-data">No tour guides available.</div>
+  <!-- Language Filter -->
+  <div class="filter-container">
+    <label for="languageFilter" class="filter-label">Filter by Language:</label>
+    <select id="languageFilter" class="form-control" [(ngModel)]="selectedLanguage"
+      (ngModelChange)="filterTourGuides()">
+      <option value="">All</option>
+      <option *ngFor="let language of availableLanguages" [value]="language">{{ language }}</option>
+    </select>
+  </div>
+  <div class="guides-list">
+    <div *ngFor="let guide of filteredTourGuides; let i = index" class="guide-item">
+      <!-- Image Slider -->
+      <div class="image-slider">
+        <div *ngIf="!guide.photoUrls || guide.photoUrls.length === 0" class="no-image">
+          No images available
+        </div>
+        <div *ngIf="guide.photoUrls && guide.photoUrls.length > 0">
+          <img [src]="guide.photoUrls[currentImageIndices[i] || 0]" alt="guide-image" class="guide-image">
+          <div class="slider-controls" *ngIf="guide.photoUrls.length > 1">
+            <button class="slider-btn prev" (click)="prevImage(i)">❮</button>
+            <button class="slider-btn next" (click)="nextImage(i)">❯</button>
+          </div>
+        </div>
+      </div>
+      <div class="guide-details">
+        <h3 class="guide-title">{{ guide.guideName }}</h3>
+        <p class="guide-detail"><strong>Languages:</strong> {{ guide.languages }}</p>
+        <p class="guide-detail"><strong>Areas Covered:</strong> {{ guide.areasCovered }}</p>
+        <p class="guide-detail"><strong>Price per Hour:</strong> ${{ guide.pricePerHour }}</p>
+        <p class="availability">
+          <strong>Availability:</strong>
+          <span [ngClass]="guide.isAvailable ? 'available' : 'unavailable'">
+            {{ guide.isAvailable ? 'Available' : 'Not Available' }}
+            <i [ngClass]="guide.isAvailable ? 'fa-solid fa-check' : 'fa-solid fa-times'"
+              [class.available-icon]="guide.isAvailable" [class.unavailable-icon]="!guide.isAvailable"></i>
+          </span>
+        </p>
+        <div class="guide-rating">
+          <i class="fa-solid fa-star" *ngFor="let _ of getStarRatingArray(guide.averageRating)"></i>
+          <i class="fa-solid fa-star empty-star" *ngFor="let _ of getEmptyStarRatingArray(guide.averageRating)"></i>
+          <p>({{ guide.averageRating }} Stars)</p>
+        </div>
+        <button class="btn btn-primary" [routerLink]="['/tour-guide-details', guide.guideID]">View</button>
+      </div>
+    </div>
+  </div>
+  <!-- Fake Pagination Section -->
+  <div *ngIf="filteredTourGuides.length > 0" class="pagination-section fade-in">
+    <button class="btn btn-secondary pulse-hover">Previous</button>
+    <span class="page-item active">1</span>
+    <span class="page-item">2</span>
+    <span class="page-item">3</span>
+    <button class="btn btn-secondary pulse-hover">Next</button>
+  </div>
+</div>

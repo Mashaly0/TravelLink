@@ -1,0 +1,99 @@
+<div class="container-fluid fancy-fade-in">
+    <div class="row">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg fancy-navbar sticky-top shadow-sm">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
+                    <i class="bi bi-globe2"></i>
+                    Egypt Trip
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavbar"
+                    aria-controls="topNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="topNavbar">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link fancy-nav-link" routerLink="/tour-guide/dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fancy-nav-link" routerLink="/tour-guide/profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fancy-nav-link" routerLink="/tour-guide/bookings">Bookings</a>
+                        </li>
+                    </ul>
+                    <button class="btn fancy-btn d-flex align-items-center gap-1" (click)="logout()">
+                        <i class="bi bi-box-arrow-right"></i>
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar -->
+        <div class="col-md-3 sidebar-container">
+            <div class="card shadow-lg h-100 fancy-sidebar p-4">
+                <h4 class="fw-bold mb-4 border-bottom pb-2">🏨 Tour Guide Dashboard</h4>
+                <div class="d-grid gap-3">
+                    <a routerLink="/tour-guide/profile" class="btn btn-lg rounded-pill fancy-btn"
+                        style="--btn-index: 1;">
+                        📖 Profile
+                    </a>
+                    <a routerLink="/tour-guide/bookings" class="btn btn-lg rounded-pill fancy-btn"
+                        style="--btn-index: 2;">
+                        📖 Bookings
+                    </a>
+                    <button class="btn btn-lg rounded-pill fancy-btn" (click)="logout()" style="--btn-index: 3;">
+                        🚪 Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9 pt-5 px-4 main-content my-5">
+            <!-- Performance Cards -->
+            <div class="row mb-4 g-3">
+                <div class="col-md-4">
+                    <div class="fancy-card text-center" style="--card-index: 1;">
+                        <h6>All Bookings</h6>
+                        <h3>{{dashBoard.bookings?.length}}</h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="fancy-card text-center" style="--card-index: 2;">
+                        <h6>Number Of Packages</h6>
+                        <h3>{{dashBoard.averageRating}}</h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="fancy-card text-center" style="--card-index: 3;">
+                        <h6>Profit</h6>
+                        <h3>{{profit}}</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart Section -->
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card fancy-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Packages</h5>
+                            <canvas #barChartCanvas></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card fancy-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Bookings</h5>
+                            <canvas #pieChartCanvas></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

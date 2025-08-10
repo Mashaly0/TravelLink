@@ -1,0 +1,36 @@
+<div class="container mt-5">
+    <button class="fancy-btn back-to-dashboard-btn mb-3" routerLink="/admin">
+        <i class="fa fa-arrow-left"></i> Back to Dashboard
+    </button>
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="section-heading">Hotels</h2>
+        </div>
+    </div>
+    <div class="row row-animated">
+        @for (hotel of hotels; track hotel.hotelID; let i = $index) {
+        <div class="col-md-4 mb-4">
+            <div class="card fancy-card card-animated" style="--card-index: {{i}};">
+                <div class="card-body">
+                    <h5 class="card-title title-animated">{{hotel.hotelName}}</h5>
+                    <p class="card-text"><strong>Address:</strong> {{hotel.address}}</p>
+                    <p class="card-text"><strong>Description:</strong> {{hotel.description}}</p>
+                    <p class="card-text"><strong>Rating:</strong> {{hotel.rating}} / 5</p>
+                    <p class="card-text"><strong>Email:</strong> {{hotel.contactEmail}}</p>
+                    <p class="card-text"><strong>Phone:</strong> {{hotel.contactPhone}}</p>
+                    <p class="card-text"><strong>Total Rooms:</strong> {{hotel.totalRooms}}</p>
+                    <p class="card-text"><strong>Available Rooms:</strong> {{hotel.availableRooms}}</p>
+                    <button class="fancy-btn confirm-btn" (click)="verifyUser(hotel.hotelID)">
+                        <i class="bi bi-check-circle"></i> Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+        }
+        <div class="col-12" *ngIf="hotels?.length === 0">
+            <div class="no-guides-message">
+                <p class="text-center">No hotels available</p>
+            </div>
+        </div>
+    </div>
+</div>

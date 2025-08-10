@@ -1,0 +1,205 @@
+* {
+    color: black;
+}
+
+header {
+    background: #fff;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.container.first {
+    padding: 40px;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.recent-bookings,
+.performance {
+    margin-bottom: 40px;
+}
+
+.recent-bookings table {
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+.recent-bookings h2 {
+    margin-bottom: 12px;
+}
+
+@media (min-width:768px) {
+
+    .recent-bookings th,
+    .recent-bookings td {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .recent-bookings th {
+        background-color: #f0f0f0;
+        text-align: left;
+    }
+}
+
+@media (max-width:767px) {
+
+    .recent-bookings th {
+        display: none;
+    }
+
+    .recent-bookings td {
+        display: block;
+        border-bottom: 1px solid black;
+        position: relative;
+        padding: 15px;
+        padding-inline-start: 55%;
+        overflow-wrap: break-word;
+    }
+
+    .recent-bookings td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 5%;
+    }
+}
+
+.status-Confirmed {
+    background-color: #e0f7e9;
+    color: #2e7d32;
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.status-Cancelled {
+    background-color: #bf2f2f;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.status-Pending {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 14px;
+}
+
+
+
+.performance {
+    display: flex;
+    gap: 20px;
+}
+
+.performance-box {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.performance-box h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: black;
+}
+
+.performance-box p {
+    font-size: 24px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.create-btn {
+    background: #eee;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width:767px) {
+    table tr td:nth-child(2n) {
+        background-color: rgb(229, 227, 227);
+    }
+
+    table {
+        border-collapse: separate;
+        border: 1px solid black;
+    }
+
+    table tr td {
+        border-bottom: none;
+    }
+
+    table tr td:last-child {
+        border-bottom: 3px solid black;
+    }
+
+    table tr:last-child td:last-child {
+        border-bottom: none;
+    }
+}
+
+.spinner {
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.table-spinner {
+    height: 150px;
+    position: relative;
+}
+
+.table-spinner>mat-progress-spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+}
+
+.reviews svg {
+    width: 20px;
+    height: 20px;
+}
+
+.reviews span {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.empty-star {
+    border: 1px solid black;
+}
+
+.user-email {
+    width: 100%;
+    overflow-wrap: break-word;
+}

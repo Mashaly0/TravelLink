@@ -1,0 +1,56 @@
+<div class="container mt-5">
+    <button class="fancy-btn back-to-dashboard-btn mb-4" routerLink="/admin">
+        <i class="fa fa-arrow-left"></i> Back to Dashboard
+    </button>
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="section-heading">Filtered Bookings</h2>
+            <div class="btn-group mb-3 filter-group" role="group">
+                <button class="btn btn-outline  fancy-btn mx-1 filter-btn" (click)="filterBookings('Pending')"
+                    [class.active]="filteredStatus === 'Pending'" aria-label="pending">Pending</button>
+                <button class="btn btn-outline  fancy-btn mx-1 filter-btn" (click)="filterBookings('Confirmed')"
+                    [class.active]="filteredStatus === 'Confirmed'" aria-label="confirmed">Confirmed</button>
+                <button class="btn btn-outline fancy-btn mx-1 filter-btn" (click)="filterBookings('Cancelled')"
+                    [class.active]="filteredStatus === 'Cancelled'" aria-label="cancelled">Cancelled</button>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card fancy-card card-animated">
+                    <div class="card-body">
+                        <h5 class="card-title title-animated">Your Bookings</h5>
+                        <div class="table-responsive">
+                            <table class="table fancy-table table-animated" *ngIf="filterBookings.length > 0">
+                                <thead>
+                                    <tr>
+                                        <th>Booking ID</th>
+                                        <th>Date</th>
+                                        <th>Tour Guide</th>
+                                        <th>Hotel</th>
+                                        <th>Status</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (booking of filteredBookings; track booking.bookingID; let i = $index) {
+                                    <tr class="fancy-table-row" style="--row-index: {{i}};">
+                                        <td class="cell-animated">{{booking.bookingID}}</td>
+                                        <td class="cell-animated">{{booking.bookingDate.split('T')[0]}}</td>
+                                        <td class="cell-animated">{{booking.tourGuideName}}</td>
+                                        <td class="cell-animated">{{booking.hotelName}}</td>
+                                        <td class="cell-animated">{{booking.status}}</td>
+                                        <td class="cell-animated">${{booking.totalPrice}}</td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="no-bookings-message" *ngIf="filteredBookings?.length === 0">
+                                <p class="text-center">No {{filteredStatus || 'available'}} bookings</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

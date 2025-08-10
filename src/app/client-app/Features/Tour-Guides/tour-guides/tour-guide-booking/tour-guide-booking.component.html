@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2 class="title">Book Tour Guide: {{ tourGuide?.guideName || 'Tour Guide' }}</h2>
+  <div *ngIf="errorMessage" class="alert alert-error">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+  <div *ngIf="!tourGuide" class="alert alert-loading">Loading tour guide details...</div>
+  <div *ngIf="tourGuide" class="booking-section card">
+    <h4 class="section-title">{{ tourGuide.guideName }}</h4>
+    <p class="booking-detail"><strong>Price per Hour:</strong> ${{ tourGuide.pricePerHour }}</p>
+    <form [formGroup]="bookingForm" (ngSubmit)="submitBooking()" class="booking-form">
+      <div class="form-group">
+        <label for="bookingDate" class="form-label">Booking Date</label>
+        <select id="bookingDate" formControlName="bookingDate" class="form-input" required>
+          <option value="" disabled>Select a date</option>
+          <option *ngFor="let date of availableDates" [value]="date">{{ date | date:'mediumDate' }}</option>
+        </select>
+        <div *ngIf="bookingForm.get('bookingDate')?.touched && bookingForm.get('bookingDate')?.errors"
+          class="error-message">
+          <span *ngIf="bookingForm.get('bookingDate')?.errors?.['required']">Booking date is required.</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="numberOfHours" class="form-label">Number of Hours</label>
+        <select id="numberOfHours" formControlName="numberOfHours" class="form-input" required>
+          <option *ngFor="let n of [1, 2, 3, 4, 5, 6, 7, 8]" [value]="n">{{ n }}</option>
+        </select>
+        <div *ngIf="bookingForm.get('numberOfHours')?.touched && bookingForm.get('numberOfHours')?.errors"
+          class="error-message">
+          <span *ngIf="bookingForm.get('numberOfHours')?.errors?.['required']">Number of hours is required.</span>
+          <span *ngIf="bookingForm.get('numberOfHours')?.errors?.['min']">Number of hours must be at least 1.</span>
+        </div>
+      </div>
+      <p class="booking-detail"><strong>Total Price:</strong> ${{ calculateTotalPrice() }}</p>
+      <div class="button-group">
+        <button type="submit" class="btn btn-primary" [disabled]="bookingForm.invalid">Confirm Booking</button>
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+   <div class="country-slider">
+      <div class="slider-container" #sliderContainer (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+        <!-- Slides -->
+        <div *ngFor="let slide of slides; let i = index" class="slide" [ngClass]="{'active': i === currentIndex}">
+          <div class="image-container">
+            <img [src]="slide.image" [alt]="slide.country">
+          </div>
+          <div class="content">
+            <h3>{{ slide.tagline }}</h3>
+            <h2>{{ slide.title }}</h2>
+            <a href="#" class="btn-slider">Go There</a>
+            <div class="stats">
+              <div class="stat-item">
+                <span>Population:</span>
+                <strong>{{ slide.population }}</strong>
+              </div>
+              <div class="stat-item">
+                <span>Territory:</span>
+                <strong>{{ slide.territory }}</strong>
+              </div>
+              <div class="stat-item">
+                <span>AVG Price:</span>
+                <strong>{{ slide.avgPrice }}</strong>
+              </div>
+            </div>
+            <a href="#" class="explore-more">Explore More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="slider-controls">
+        <button class="prev" (click)="prevSlide()">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="dots">
+          <span *ngFor="let slide of slides; let i = index" class="dot" [ngClass]="{'active': i === currentIndex}" (click)="goToSlide(i)" [attr.data-index]="i"></span>
+        </div>
+        <button class="next" (click)="nextSlide()">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>

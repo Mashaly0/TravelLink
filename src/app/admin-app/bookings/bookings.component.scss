@@ -1,0 +1,341 @@
+/* Existing Styles (from previous response) */
+.btn-group.filter-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.btn-group .fancy-btn {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+}
+
+.btn-group .fancy-btn.filter-btn {
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    color: #333;
+}
+
+.btn-group .fancy-btn.filter-btn.active {
+    background: linear-gradient(135deg, goldenrod);
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.btn-group .fancy-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    color: #000;
+}
+
+.btn-group .fancy-btn:hover[aria-label="confirmed"] {
+    background: linear-gradient(135deg, #4caf50, #66bb6a);
+}
+
+.btn-group .fancy-btn:hover[aria-label="cancelled"] {
+    background: linear-gradient(135deg, #af4c4c, #de1919);
+}
+
+.btn-group .fancy-btn:hover[aria-label="pending"] {
+    background: linear-gradient(135deg, #ded032, #d8de19);
+}
+
+.btn-group .fancy-btn:hover::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 0.6s ease-out forwards;
+}
+
+.btn-group .fancy-btn.bg-success:hover {
+    background: linear-gradient(135deg, #66bb6a, #4caf50);
+}
+
+.btn-group .fancy-btn.bg-warning:hover {
+    background: linear-gradient(135deg, #ffca28, #ffb300);
+}
+
+.btn-group .fancy-btn.bg-danger:hover {
+    background: linear-gradient(135deg, #ef5350, #e53935);
+}
+
+.fancy-card.card-animated {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+    animation: cardPopIn 0.8s ease-out;
+}
+
+.fancy-card.card-animated:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+.card-title.title-animated {
+    animation: fadeIn 1s ease-out;
+    color: #000000;
+    font-weight: 600;
+}
+
+.table-animated {
+    animation: fadeInUp 1s ease-out;
+}
+
+.fancy-table-row {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    animation: rowFadeIn 0.5s ease-out;
+    animation-delay: calc(var(--row-index) * 0.1s);
+}
+
+.fancy-table-row:hover {
+    background-color: #f5f5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cell-animated {
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.cell-animated:hover {
+    color: #9c27b0;
+    transform: scale(1.02);
+}
+
+/* New No Bookings Message Styling */
+.no-bookings-message {
+    padding: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-out;
+}
+
+.no-bookings-message p {
+    font-size: 1.2rem;
+    color: #666;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Animation Definitions */
+@keyframes ripple {
+    to {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(156, 39, 176, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(156, 39, 176, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(156, 39, 176, 0);
+    }
+}
+
+@keyframes rowFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes cardPopIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    20% {
+        box-shadow: 0 12px 30px goldenrod;
+    }
+
+    50% {
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 12px 30px goldenrod;
+    }
+
+    100% {
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+    .btn-group .fancy-btn {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+
+    .fancy-table th,
+    .fancy-table td {
+        font-size: 0.9rem;
+    }
+
+    .card-animated {
+        padding: 10px;
+    }
+
+    .no-bookings-message p {
+        font-size: 1rem;
+    }
+}
+
+.back-to-dashboard-container {
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px 0;
+    animation: fadeInUp 1s ease-out;
+}
+
+.back-to-dashboard-btn {
+    background: linear-gradient(135deg, goldenrod, #d4a017);
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.back-to-dashboard-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(212, 160, 23, 0.5);
+    background: linear-gradient(135deg, #e6b800, goldenrod);
+    color: #fff;
+}
+
+.back-to-dashboard-btn:hover::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 0.6s ease-out forwards;
+}
+
+.back-to-dashboard-btn i {
+    transition: transform 0.3s ease;
+}
+
+.back-to-dashboard-btn:hover i {
+    transform: translateX(-3px);
+}
+
+.back-to-dashboard-btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ripple {
+    to {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+    .back-to-dashboard-btn {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+
+    .back-to-dashboard-btn i {
+        font-size: 0.9rem;
+    }
+}

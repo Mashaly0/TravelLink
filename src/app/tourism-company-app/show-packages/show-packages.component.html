@@ -1,0 +1,53 @@
+<div class="booking-management mb-2">
+    <div class="container">
+        <!-- Start Of Booking Management  -->
+        <div class="back-button-container">
+            <a routerLink="/company/dashboard" class="btn btn-outline-primary back-btn">
+                🔙 Back to Dashboard
+            </a>
+        </div>
+        <h1>Package Management</h1>
+        <div class="incoming-bookings mt-5">
+            <h2>Company Packages</h2>
+
+            @defer (when isPackagesReqFinished) {
+            @if(packages.length === 0){
+            <div class="loading-container mt-5">
+                <h2>No Packages Were Made</h2>
+            </div>
+            }@else {
+            <div class="row">
+                @for (item of packages; track $index) {
+                <div class="col-12 mb-3">
+                    <div class="card package-card d-flex flex-row align-items-center">
+                        <img [src]="item.photoUrls![0]" alt="Package Image" class="package-thumb" />
+                        <div class="card-body p-3">
+                            <h5 class="card-title mb-1 text-primary">
+                                {{ item.packageName }}
+                            </h5>
+                            <p class="card-text mb-1">
+                                <strong>Start:</strong> {{ item.startDate.split("T")[0] }}
+                            </p>
+                            <p class="card-text mb-0">
+                                <strong>Price:</strong> ${{ item.price }}
+                            </p>
+                        </div>
+
+                        <button class="delete-btn ms-auto ml-2 btn btn-danger"
+                            (click)="openDeleteDialog(item.packageId)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                }
+            </div>
+            }
+            }@loading (minimum 2s){
+            <div class="loading-container mt-5">
+                <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- End Of Booking Management  -->

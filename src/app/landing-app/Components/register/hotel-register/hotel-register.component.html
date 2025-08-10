@@ -1,0 +1,103 @@
+<!-- tour-guide-registration.component.html -->
+<div class="container mt-5 animate__animated animate__fadeIn hotel-container">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-gradient-info text-white py-4 rounded-top-4 d-flex align-items-center">
+                    <i class="fas fa-user-tie fa-lg me-2"></i>
+                    <h3 class="mb-0">Hotel Registration</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form #hotelForm="ngForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+                        <!-- Personal Info -->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="firstName" name="firstName"
+                                        [(ngModel)]="model.firstName" required>
+                                    <label for="firstName">First Name*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="lastName" name="lastName"
+                                        [(ngModel)]="model.lastName" required>
+                                    <label for="lastName">Last Name*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        [(ngModel)]="model.email" required>
+                                    <label for="email">Email*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        [(ngModel)]="model.password" required>
+                                    <label for="password">Password*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber"
+                                        [(ngModel)]="model.phoneNumber" required>
+                                    <label for="phoneNumber">Phone Number*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <h4>Address</h4>
+                                    <div class="fancy-map" id="map"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="hotel name" name="hotel name"
+                                        [(ngModel)]="model.hotelName" required>
+                                    <label for="hotel name">Hotel Name*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="description" id="description"
+                                        name="description" style="height: 100px"
+                                        [(ngModel)]="model.description"></textarea>
+                                    <label for="description">Hotel Description*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input class="form-control" placeholder="rating" id="rating" name="rating"
+                                        [(ngModel)]="model.rating" min="1" max="5" />
+                                    <label for="rating">Rating*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="contactEmail" name="contactEmail"
+                                        [(ngModel)]="model.contactEmail">
+                                    <label for="contactEmail">Contact Email*</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="tel" class="form-control" id="contactPhone" name="contactPhone"
+                                        [(ngModel)]="model.contactPhone">
+                                    <label for="contactPhone">Contact Phone*</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-lg btn-info px-5 shadow-sm"
+                                [disabled]="!hotelForm.valid">
+                                <i class="fas fa-paper-plane me-2"></i>Register
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

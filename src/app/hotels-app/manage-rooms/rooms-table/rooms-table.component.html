@@ -1,0 +1,43 @@
+<div class="rooms position-relative container my-5">
+    @if (rooms) {
+    <div class="card shadow-lg border-0 p-4 rounded-4 card-animated">
+        <h2 class="mb-4 text-primary fw-bold text-center section-heading">All Rooms</h2>
+        <div class="row g-4 row-animated">
+            @for (item of rooms; track $index; let i = $index) {
+            <div class="col-md-6 col-lg-4">
+                <div class="card fancy-table h-100 card-item-animated" style="--card-index: {{i}};">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <img [src]="item.photoUrls![0]" class="img-fluid room-image"
+                                alt="{{item.roomType}} Image" />
+                            <h5 class="card-title text-primary">{{ item.roomType }}</h5>
+                            <p class="card-text mb-2">
+                                <strong>Price Per Night:</strong> ${{ item.pricePerNight }}
+                            </p>
+                            <p class="card-text">
+                                <strong>Available:</strong>
+                                <span class="badge" [ngClass]="item.isAvailable ? 'bg-success' : 'bg-danger'">
+                                    {{ item.isAvailable ? 'Yes' : 'No' }}
+                                </span>
+                            </p>
+                        </div>
+                        <div class="mt-3">
+                            <a [routerLink]="[item.roomId]"
+                                class="btn btn-sm btn-outline-primary me-2 fancy-btn edit-btn">Edit</a>
+                            <button (click)="openDeleteDialog(item.roomId!, 'Room')"
+                                class="btn btn-sm btn-outline-danger fancy-btn delete-btn">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+    } @else {
+    <div class="alert alert-warning text-center mt-5 fs-5 no-rooms-message">
+        No Rooms In This Hotel
+    </div>
+    }
+</div>

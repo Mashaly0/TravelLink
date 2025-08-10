@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <button class="fancy-btn back-to-dashboard-btn mb-3" routerLink="/admin">
+        <i class="fa fa-arrow-left"></i> Back to Dashboard
+    </button>
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="section-heading">Tour Guides</h2>
+        </div>
+    </div>
+    <div class="row row-animated">
+        @for (guide of tourGuides; track guide.guideID; let i = $index) {
+        <div class="col-md-4 mb-4">
+            <div class="card fancy-card card-animated mt-auto" style="--card-index: {{i}};">
+                <div class="card-body">
+
+                    <h5 class="card-title title-animated">{{guide.guideName}}</h5>
+                    <p class="card-text"><strong>License:</strong> {{guide.licenseNumber}}</p>
+                    <p class="card-text"><strong>Languages:</strong> {{guide.languages}}</p>
+                    <p class="card-text"><strong>Areas:</strong> {{guide.areasCovered}}</p>
+                    <p class="card-text"><strong>Price/Hour:</strong> ${{guide.pricePerHour}}</p>
+                    <p class="card-text"><strong>Email:</strong> {{guide.contactEmail}}</p>
+                    <p class="card-text"><strong>Phone:</strong> {{guide.contactPhone}}</p>
+                    <p class="card-text"><strong>Rating:</strong> {{guide.averageRating}} / 5</p>
+                    <p class="card-text"><strong>Bookings:</strong> {{guide.totalBookings}}</p>
+                    <p class="card-text"><strong>Available:</strong> {{guide.isAvailable ? 'Yes' : 'No'}}</p>
+                    <button class="fancy-btn confirm-btn" (click)="verifyUser(guide.guideID!)">
+                        <i class="bi bi-check-circle"></i> Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+        }
+        <div class="col-12" *ngIf="tourGuides?.length === 0">
+            <div class="no-guides-message">
+                <p class="text-center">No tour guides available</p>
+            </div>
+        </div>
+    </div>
+</div>

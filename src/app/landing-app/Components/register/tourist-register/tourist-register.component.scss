@@ -1,0 +1,86 @@
+.tourist-register {
+    transition: all 0.2s ease-in;
+}
+
+.tourist-register:hover {
+    transform: scale(1.01);
+}
+
+.card {
+    transition: all 0.3s ease-in-out;
+    background: #fff;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #007bff, #00b4ff);
+    color: #fff;
+}
+
+.rounded-top-4 {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.rounded-4 {
+    border-radius: 1rem;
+}
+
+/* ✨ Floating Label Enhancements */
+.form-floating>label {
+    color: #555;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    border-color: #007bff;
+}
+
+.form-floating>.form-control:focus~label {
+    color: #007bff;
+}
+
+button.btn {
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+    font-size: 1.1rem;
+    padding: 12px 28px;
+}
+
+button.btn:hover {
+    background: linear-gradient(to right, #0056d2, #00aaff);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+}
+
+
+label {
+    margin-bottom: 0.3rem;
+}
+
+textarea.form-control {
+    resize: none;
+}
+
+@media (max-width: 768px) {
+    .card {
+        margin: 0 15px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .card-header h3 {
+        font-size: 1.4rem;
+    }
+}
+
+.fancy-map {
+    height: 250px;
+    background: #dee2e6;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}

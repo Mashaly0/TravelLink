@@ -1,0 +1,232 @@
+<nav class="navbar navbar-expand-lg fancy-navbar sticky-top shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
+            <i class="bi bi-globe2"></i>
+            Egypt Trip
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavbar"
+            aria-controls="topNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="topNavbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <button class="fancy-btn" routerLink="/hotel/rooms">Rooms</button>
+                </li>
+                <li class="nav-item">
+                    <button class="fancy-btn" routerLink="/hotel/new-room">New Room</button>
+                </li>
+            </ul>
+            <button class="btn fancy-btn d-flex align-items-center gap-1" (click)="logout()">
+                <i class="bi bi-box-arrow-right"></i>
+                Logout
+            </button>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid fancy-fade-in">
+    <div class="row">
+        <!-- Navbar -->
+
+
+        <!-- Sidebar -->
+        <div class="col-md-3 sidebar-container">
+            <div class="card shadow-lg h-100 fancy-sidebar p-4">
+                <h4 class="fw-bold mb-4 border-bottom pb-2">🏨 Hotel Dashboard</h4>
+                <div class="d-grid gap-3">
+                    <a routerLink="/hotel/profile" class="btn btn-lg rounded-pill fancy-btn" style="--btn-index: 1;">
+                        👤 Profile
+                    </a>
+                    <a routerLink="/hotel/rooms" class="btn btn-lg rounded-pill fancy-btn" style="--btn-index: 2;">
+                        🛏️ Rooms
+                    </a>
+                    <a routerLink="/hotel/new-room" class="btn btn-lg rounded-pill fancy-btn" style="--btn-index: 3;">
+                        ➕ New Room
+                    </a>
+                    <button class="btn btn-lg rounded-pill fancy-btn" (click)="logout()" style="--btn-index: 4;">
+                        🚪 Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9 pt-5 px-4 main-content my-5">
+            <!-- Performance Cards -->
+            <div class="row mb-4 g-3">
+                <div class="col-md-4">
+                    <div class="fancy-card text-center" style="--card-index: 1;">
+                        <h6>Total Bookings</h6>
+                        @defer (when isHotelReqFinished) {
+                        <h3>{{hotelDashBoard.bookings?.length}}</h3>
+                        } @placeholder {
+                        <div class="loading-container">
+                            <mat-progress-spinner mode="indeterminate" diameter="40"
+                                color="accent"></mat-progress-spinner>
+                        </div>
+                        } @loading (minimum 3s) {
+                        <div class="loading-container">
+                            <mat-progress-spinner mode="indeterminate" diameter="40"
+                                color="accent"></mat-progress-spinner>
+                        </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="fancy-card text-center" style="--card-index: 2;">
+                        <h6>Profit</h6>
+                        @defer (when isHotelReqFinished) {
+                        <h3>${{profit}}</h3>
+                        } @placeholder {
+                        <div class="loading-container">
+                            <mat-progress-spinner mode="indeterminate" diameter="40"
+                                color="accent"></mat-progress-spinner>
+                        </div>
+                        } @loading (minimum 3s) {
+                        <div class="loading-container">
+                            <mat-progress-spinner mode="indeterminate" diameter="40"
+                                color="accent"></mat-progress-spinner>
+                        </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="fancy-card text-center" style="--card-index: 3;">
+                        <h6>Number Of Rooms</h6>
+                        @defer (when isHotelReqFinished) {
+                        <h3>{{hotelDashBoard.rooms?.length}}</h3>
+                        } @placeholder {
+                        <div class="loading-container">
+                            <mat-progress-spinner mode="indeterminate" diameter="40"
+                                color="accent"></mat-progress-spinner>
+                        </div>
+                        } @loading (minimum 3s) {
+                        <div class="loading-container">
+                            <mat-progress-spinner mode="indeterminate" diameter="40"
+                                color="accent"></mat-progress-spinner>
+                        </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="fancy-card text-center" style="--card-index: 4;">
+                        <h6>Rating</h6>
+                        @defer (when isHotelReqFinished) {
+                        <h3>{{hotelDashBoard.averageRating}} ★</h3>
+                        } @placeholder {
+                        <div class="loading-container">
+                            <mat-progress-spinner mode="indeterminate" diameter="40"
+                                color="accent"></mat-progress-spinner>
+                        </div>
+                        } @loading (minimum 3s) {
+                        <div class="loading-container">
+                            <mat-progress-spinner mode="indeterminate" diameter="40"
+                                color="accent"></mat-progress-spinner>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bookings Table -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card fancy-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Recent Bookings</h5>
+                            <div class="table-responsive">
+                                @defer (when isHotelReqFinished) {
+                                <div class="row mb-5">
+                                    <div class="col-12">
+                                        <h5 class="section-heading">Filter Bookings</h5>
+                                        <div class="btn-group mb-3" role="group">
+                                            <button class="btn btn-outline bg-success fancy-btn mx-1"
+                                                (click)="filterBookings('Pending')"
+                                                [class.active]="filteredStatus === 'Pending'">Pending</button>
+                                            <button class="btn btn-outline bg-warning fancy-btn mx-1"
+                                                (click)="filterBookings('Confirmed')"
+                                                [class.active]="filteredStatus === 'Confirmed'">Confirmed</button>
+                                            <button class="btn btn-outline bg-danger fancy-btn mx-1"
+                                                (click)="filterBookings('Cancelled')"
+                                                [class.active]="filteredStatus === 'Cancelled'">Cancelled</button>
+                                        </div>
+                                    </div>
+                                    <table class="table fancy-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Tour</th>
+                                                <th>Date</th>
+                                                <th>Customer</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (item of filteredBookings; track $index; let i = $index) {
+                                            <tr class="fancy-table-row" style="--row-index: {{i}};">
+                                                <td>{{item.packageName}}</td>
+                                                <td>{{item.bookingDate | date:'shortDate'}}</td>
+                                                <td>{{item.touristEmail}}</td>
+                                                <td>{{item.status}}</td>
+                                            </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                } @placeholder {
+                                <div class="loading-container">
+                                    <mat-progress-spinner mode="indeterminate" diameter="40"
+                                        color="accent"></mat-progress-spinner>
+                                </div>
+                                } @loading (minimum 3s) {
+                                <div class="loading-container">
+                                    <mat-progress-spinner mode="indeterminate" diameter="40"
+                                        color="accent"></mat-progress-spinner>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map & Actions -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card fancy-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Map Preview</h5>
+                            <div id="map" class="map-container rounded"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 quick-actions">
+                    <h5 class="section-heading">Quick Actions</h5>
+                    <div class="d-grid gap-2">
+                        <button class="btn fancy-btn" routerLink="/hotel/new-room">Create New Room</button>
+                        <button class="btn fancy-btn" routerLink="/hotel/rooms">View Your Rooms</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card fancy-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Monthly Packages</h5>
+                            <canvas #barChartCanvas></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card fancy-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Booking Status Distribution</h5>
+                            <canvas #pieChartCanvas></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

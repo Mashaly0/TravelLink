@@ -1,0 +1,199 @@
+<app-navbar></app-navbar>
+<div class="container my-4">
+    <div class="slider-photo">
+        <img [src]="sliderData[selectedImage].image" width="100%" height="400px" class="slider-image" />
+        <i class="fa-solid fa-chevron-left slider-arrow"
+            style="position: absolute; top: 50%; transform: translateY(-50%); left: 15px; color: white; cursor: pointer;"
+            (click)="moveToPreImage()"></i>
+        <h2 class="slider-title"
+            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+            {{ sliderData[selectedImage].title }}
+        </h2>
+        <i class="fa-solid fa-chevron-right slider-arrow"
+            style="position: absolute; top: 50%; transform: translateY(-50%); right: 15px; color: white; cursor: pointer;"
+            (click)="moveToNextImage()"></i>
+    </div>
+
+    <!-- Tour Guides -->
+    @defer (when isGuidesReqFinished) {
+    @if (topTourGuides.length === 0) {
+    <h2 class="mx-auto fade-in text-center">No Tour Guides Are Available</h2>
+    } @else {
+    <div class="top-tour-guides mt-5 fade-in-up">
+        <h2 class="text-center mb-4 section-heading">Top Tour Guides <button class="text-btn fancy-btn"
+                routerLink="/tour-guides">View More</button></h2>
+        <div class="row g-4">
+            @for (guide of topTourGuides; track guide.guideID; let i = $index) {
+            <div class="col-6 col-md-4">
+                <div class="tour-guide-card card-animated cascade-card" style="--card-index: {{i}};">
+                    <img [src]="guide.photoUrls![0]" alt="{{guide.guideName}}" class="tour-guide img-fluid" />
+                    <div class="card-content">
+                        <div class="tour-guide-name">{{guide.guideName}}</div>
+                        <div class="tour-guide-info">Speaks: {{guide.languages || 'N/A'}}</div>
+                        <div class="tour-guide-info">Areas: {{guide.areasCovered || 'N/A'}}</div>
+                        <div class="tour-guide-price">${{guide.pricePerHour}}/hr</div>
+                        <div class="tour-guide-rating">
+                            <span class="rating-stars">
+                                @for (i of [].constructor(5); track $index) {
+                                <i
+                                    [ngClass]="{'text-warning': $index < guide.averageRating!, 'text-secondary': $index >= guide.averageRating!}">★</i>
+                                }
+                            </span>
+                        </div>
+                        <div class="tour-guide-contact">{{guide.contactEmail || 'N/A'}}</div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+    }
+    } @placeholder {
+    <div class="loading-spinner mx-auto">
+        <mat-progress-spinner mode="indeterminate" diameter="40" color="accent"></mat-progress-spinner>
+    </div>
+    } @loading (minimum 3s) {
+    <div class="loading-spinner mx-auto">
+        <mat-progress-spinner mode="indeterminate" diameter="40" color="accent"></mat-progress-spinner>
+    </div>
+    }
+
+    <!-- Packages -->
+    @defer (when isPackagesReqFinished) {
+    @if (topTourPackages.length === 0) {
+    <h2 class="mx-auto fade-in text-center">No Tour Packages Are Available</h2>
+    } @else {
+    <div class="top-tour-packages mt-5 fade-in-up">
+        <h2 class="text-center mb-4 section-heading">Top Packages <button class="text-btn fancy-btn"
+                routerLink="/tour-packages">View More</button></h2>
+        <div class="row g-4">
+            @for (package of topTourPackages; track package.packageId; let i = $index) {
+            <div class="col-6 col-md-4">
+                <div class="tour-package-card card-animated cascade-card" style="--card-index: {{i}};">
+                    <img [src]="package.photoUrls![0]" alt="{{package.packageName}}" class="tour-guide img-fluid" />
+                    <div class="card-content">
+                        <div class="tour-guide-name">{{package.packageName}}</div>
+                        <div class="tour-guide-info">{{package.description | slice:0:80}}...</div>
+                        <div class="tour-guide-info">Duration: {{package.durationDays}} days</div>
+                        <div class="tour-guide-price">${{package.price}}</div>
+                        <div class="tour-guide-info">By: {{package.companyName}}</div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+    }
+    } @placeholder {
+    <div class="loading-spinner mx-auto">
+        <mat-progress-spinner mode="indeterminate" diameter="40" color="accent"></mat-progress-spinner>
+    </div>
+    } @loading (minimum 3s) {
+    <div class="loading-spinner mx-auto">
+        <mat-progress-spinner mode="indeterminate" diameter="40" color="accent"></mat-progress-spinner>
+    </div>
+    }
+
+    <!-- Hotels -->
+    @defer (when isHotelsReqFinished) {
+    @if (topHotels.length === 0) {
+    <h2 class="mx-auto fade-in text-center">No Hotels Are Available</h2>
+    } @else {
+    <div class="top-hotels mt-5 fade-in-up">
+        <h2 class="text-center mb-4 section-heading">Top Hotels <button class="text-btn fancy-btn"
+                routerLink="/hotel-reservation">View More</button></h2>
+        <div class="row g-4">
+            @for (hotel of topHotels; track hotel.hotelID; let i = $index) {
+            <div class="col-6 col-md-4">
+                <div class="hotel-card card-animated cascade-card" style="--card-index: {{i}};">
+                    <img [src]="hotel.photoUrls![0]" alt="{{hotel.hotelName}}" class="tour-guide img-fluid" />
+                    <div class="card-content">
+                        <div class="hotel-name">{{hotel.hotelName}}</div>
+                        <div class="hotel-info">{{hotel.description | slice:0:80}}...</div>
+                        <div class="hotel-info">Rooms Available: {{hotel.availableRooms}}/{{hotel.totalRooms}}</div>
+                        <div class="hotel-address">{{hotel.address}}</div>
+                        <div class="hotel-rating">
+                            <span class="rating-stars">
+                                @for (i of [].constructor(5); track $index) {
+                                <i
+                                    [ngClass]="{'text-warning': $index < hotel.rating!, 'text-secondary': $index >= hotel.rating!}">★</i>
+                                }
+                            </span>
+                        </div>
+                        <div class="hotel-contact">{{hotel.contactPhone || 'N/A'}}</div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+    }
+    } @placeholder {
+    <div class="loading-spinner mx-auto">
+        <mat-progress-spinner mode="indeterminate" diameter="40" color="accent"></mat-progress-spinner>
+    </div>
+    } @loading (minimum 3s) {
+    <div class="loading-spinner mx-auto">
+        <mat-progress-spinner mode="indeterminate" diameter="40" color="accent"></mat-progress-spinner>
+    </div>
+    }
+
+    <!-- Testimonials -->
+    <div class="testimonials mt-5">
+        <h2 class="text-center fade-in section-heading">Testimonials</h2>
+        <div class="row mt-5">
+            @for (item of topReviews; track item.reviewId; let i = $index) {
+            <div class="col-12 my-3">
+                <div class="testimonial-card card-animated cascade-card" style="--card-index: {{i}};">
+                    <div class="testimonial-content">
+                        <p>{{item.comment | slice:0:150}}...</p>
+                    </div>
+                    <div class="rating-stars">
+                        @for (i of [0, 1, 2, 3, 4]; track $index) {
+                        <svg [ngClass]="{'filled': $index < item.rating, 'empty': $index >= item.rating}"
+                            xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 .587l3.668 7.568L24 9.75l-6 5.797L19.335 24 12 19.897 4.665 24 6 15.547 0 9.75l8.332-1.595z" />
+                        </svg>
+                        }
+                        <span class="rating-value">({{item.rating}})</span>
+                    </div>
+                    <div class="testimonial-date">
+                        <p>{{item.reviewDate.split('T')[0]}}</p>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats mt-5">
+        <div class="row g-5">
+            <div class="col">
+                <div class="card px-4 pt-2 bounce-in rotate-in" style="--card-index: 0;">
+                    <h2>Hotels</h2>
+                    <p>{{hotelsNumber}}</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card px-4 pt-2 bounce-in rotate-in" style="--card-index: 1;">
+                    <h2>Tour Guides</h2>
+                    <p>{{guidesNumber}}</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card px-4 pt-2 bounce-in rotate-in" style="--card-index: 2;">
+                    <h2>Packages</h2>
+                    <p>{{packagesNumber}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center mt-5 fade-in-out">
+        <p>© 2025 EgyptTrip. All rights reserved.</p>
+    </footer>
+</div>

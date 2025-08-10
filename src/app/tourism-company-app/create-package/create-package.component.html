@@ -1,0 +1,71 @@
+<!-- Start Of Create Package  -->
+<div class="create-package pt-5 mb-2 animate-slide-in">
+    <div class="container">
+        <div class="back-button-container mb-4">
+            <a routerLink="/company/dashboard" class="btn btn-outline-primary back-btn">
+                🔙 Back to Dashboard
+            </a>
+        </div>
+        <h1 class="pt-3">Create New Tour Package</h1>
+        <p class="pt-3">Follow the steps below to create a new tour package for your company.</p>
+        <div class="package-info pt-3">
+            <h2 class="pt-3 pb-5">Package Information</h2>
+            <h2 class="pt-3">Package Photos</h2>
+
+            @if(photoPreviews.length !== 0){
+            <h2 class="mt-5">Package Images</h2>
+            <div class="photo-slider">
+                @for (item of photoPreviews; track $index ; let i = $index) {
+                <div class="photo animate-zoom-in">
+                    <img [src]="item" alt="Profile Photo" />
+                    <button (click)="removeImage(i)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path
+                                d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                        </svg>
+                    </button>
+                </div>
+                }
+            </div>
+            }@else {
+            <h2 class="mt-5 mb-5">Package Has No Photos, Add Photos To It!</h2>
+            }
+
+            <form (ngSubmit)="createPackage()" class="animate-fade-in">
+                <label class="mt-4">Package Name</label>
+                <input type="text" placeholder="Enter Package Name" name="packageName"
+                    [(ngModel)]="package.packageName" />
+
+                <label class="mt-5">Package Description</label>
+                <textarea rows="10" placeholder="Enter Package Description" [(ngModel)]="package.description"
+                    name="description"></textarea>
+
+                <label class="mt-5">Price</label>
+                <input type="number" placeholder="Enter Package Price" name="price" [(ngModel)]="package.price" />
+
+                <label class="mt-5">Destinations</label>
+                <div class="dest-checkboxes">
+                    @for (item of destinations; track $index) {
+                    <div class="dest-checkbox">
+                        <input type="checkbox" name="dest"
+                            (change)="addOrRemoveDestination(item.destinationId,$event)" />
+                        <label>{{item.name}}</label><br />
+                    </div>
+                    }
+                </div>
+
+                <label class="mt-5">Start Date</label>
+                <input type="date" name="startDate" [(ngModel)]="package.startDate" />
+
+                <label class="mt-5">End Date</label>
+                <input type="date" name="endDate" [(ngModel)]="package.endDate" />
+
+                <label class="mt-5">Package Images</label>
+                <input type="file" multiple (change)="addImagesToPackage($event)" #fileInput />
+
+                <button class="submit-btn" type="submit">🚀 Next</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Of Create Package  -->

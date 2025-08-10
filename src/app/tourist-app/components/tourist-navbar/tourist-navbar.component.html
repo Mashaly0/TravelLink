@@ -1,0 +1,18 @@
+<nav class="tourist-navbar">
+  <div class="navbar-left">
+    <img src="/assets/images/logo.svg" alt="Logo" class="logo" />
+    <a routerLink="/tourist/dashboard" class="nav-link">Home</a>
+    <a routerLink="/tourist/dashboard/trips" class="nav-link">Trips</a>
+    <a routerLink="/tourist/dashboard/messages" class="nav-link">Messages</a>
+    <a routerLink="/tourist/dashboard/hotel-offers" class="nav-link">Hotel Offers</a>
+    <a routerLink="/tourist/dashboard/guide-offers" class="nav-link">Tour Guide Offers</a>
+  </div>
+  <div class="navbar-right" (mouseenter)="showDropdown()" (mouseleave)="hideDropdown()">
+    <img src="/assets/images/profile.jpg" alt="Profile" class="profile-icon dropdown-toggle" id="profileDropdown"
+      [class.show]="dropdownOpen" style="cursor: pointer;" />
+    <ul class="dropdown-menu dropdown-menu-end" [class.show]="dropdownOpen" aria-labelledby="profileDropdown">
+      <li class="dropdown-header">Welcome, {{ username || 'Tourist' }}!</li>
+      <li><button class="dropdown-item" (click)="logout()">Sign Out</button></li>
+    </ul>
+  </div>
+</nav>

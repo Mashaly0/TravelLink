@@ -1,0 +1,54 @@
+<div class="container-fluid body-container">
+  <div class="login-image">
+    <div class="login-card card-hotel text-center">
+      <div class="card-icon">🏨</div>
+      <h4 class="mt-3">Hotel</h4>
+      <p>Find a good place to stay</p>
+    </div>
+    <div class="login-card card-tourism text-center">
+      <div class="card-icon">🧳</div>
+      <h4 class="mt-3">Tourism Company</h4>
+      <p>Find a place to facilitate your stay</p>
+    </div>
+    <div class="login-card card-guide text-center">
+      <div class="card-icon">🗺️</div>
+      <h4 class="mt-3">Tour Guide</h4>
+      <p>Find a person to guide you</p>
+    </div>
+    <div class="login-card card-custom text-center">
+      <div class="card-icon">⚙️</div>
+      <h4 class="mt-3">Customizable</h4>
+      <p>Find a trip customized for you</p>
+    </div>
+  </div>
+
+  <div class="login-form p-5">
+    <form (ngSubmit)="login()">
+      <h2 class="text-center mb-4">Welcome Back</h2>
+      <p class="text-center mb-4">New here?
+        <span class="link-highlight" routerLink="/register">Create an account</span>
+      </p>
+      <div class="mb-3 input-group">
+        <label for="username" class="form-label">Email</label>
+        <input type="email" class="form-control" id="username" placeholder="Enter email" required
+          [(ngModel)]="user.email" name="email">
+        <div class="input-glow"></div>
+      </div>
+      <div class="mb-4 input-group">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter password" required
+          [(ngModel)]="user.password" name="password">
+        <div class="input-glow"></div>
+      </div>
+      <p class="text-center mb-4">Forgot Password?
+        <span class="link-highlight" routerLink="/forgot-password">Reset it</span>
+      </p>
+      <button type="submit" class="btn btn-gradient-purple w-100 py-2">Login</button>
+      <button type="button" class="btn btn-gradient-red w-100 py-2 mt-2" (click)="loginWithGoogle()">Login With Google
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+          <path
+            d="M386.3 292.5C388.1 302.2 389.4 311.9 389.4 324.5C389.4 434.3 315.8 512 205 512C98.9 512 13 426.1 13 320C13 213.9 98.9 128 205 128C256.9 128 300.1 146.9 333.6 178.3L281.5 228.3C267.4 214.7 242.5 198.7 205 198.7C139.5 198.7 86.1 252.9 86.1 320C86.1 387.1 139.5 441.3 205 441.3C281 441.3 309.5 386.6 314 358.5L205 358.5L205 292.5L386.3 292.5L386.3 292.5zM571.7 298.9L571.7 243.2L515.7 243.2L515.7 298.9L460 298.9L460 354.9L515.7 354.9L515.7 410.6L571.7 410.6L571.7 354.9L627.4 354.9L627.4 298.9L571.7 298.9z" />
+        </svg></button>
+    </form>
+  </div>
+</div>

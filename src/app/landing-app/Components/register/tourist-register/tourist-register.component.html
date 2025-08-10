@@ -1,0 +1,83 @@
+<div class="container mt-5 animate__animated animate__fadeIn tourist-register">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-gradient-primary text-white py-4 rounded-top-4">
+                    <h3 class="mb-0 text-center">
+                        <i class="fas fa-user-plus me-2"></i>Tourist Registration
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <form #touristForm="ngForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="firstName" name="firstName"
+                                        [(ngModel)]="model.firstName" placeholder="First Name" required>
+                                    <label for="firstName">First Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="lastName" name="lastName"
+                                        [(ngModel)]="model.lastName" placeholder="Last Name" required>
+                                    <label for="lastName">Last Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        [(ngModel)]="model.email" placeholder="Email" required>
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        [(ngModel)]="model.password" placeholder="Password" required>
+                                    <label for="password">Password</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber"
+                                        [(ngModel)]="model.phoneNumber" placeholder="Phone Number" required>
+                                    <label for="phoneNumber">Phone Number</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <h4>Address</h4>
+
+                                    <div id="map" class="fancy-map"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Preferences" id="preferences"
+                                        name="preferences" style="height: 100px"
+                                        [(ngModel)]="model.preferences"></textarea>
+                                    <label for="preferences">Travel Preferences</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="favoriteDestinations"
+                                        name="favoriteDestinations" placeholder="Favorite Destinations"
+                                        [(ngModel)]="model.favoriteDestinations">
+                                    <label for="favoriteDestinations">Favorite Destinations</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-lg btn-primary px-5 shadow-sm"
+                                [disabled]="!touristForm.valid">
+                                <i class="fas fa-paper-plane me-2"></i>Register
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

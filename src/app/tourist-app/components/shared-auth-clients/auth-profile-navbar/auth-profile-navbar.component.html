@@ -1,0 +1,37 @@
+<nav class="navbar">
+  <!-- Left side -->
+  <div class="navbar-left">
+    <img src="/images/logo.svg" alt="Logo" class="logo" />
+    <a routerLink="/" class="nav-link">Home</a>
+    <a routerLink="/explore" class="nav-link">Explore</a>
+    <a routerLink="/my-trips" class="nav-link">My Trips</a>
+    <a routerLink="/reviews" class="nav-link">Reviews</a>
+  </div>
+
+  <!-- Right side -->
+  <div class="navbar-right dropdown">
+  <i class="bi bi-search search-icon me-3"></i>
+
+  <!-- Profile Icon with Dropdown -->
+ <div class="navbar-right dropdown" (mouseenter)="showDropdown()" (mouseleave)="hideDropdown()">
+  <i class="bi bi-search search-icon me-3"></i>
+
+  <!-- Profile Icon -->
+  <img
+    src="assets/images/profile.jpg"
+    alt="Profile"
+    class="profile-icon dropdown-toggle"
+    id="profileDropdown"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+    [class.show]="dropdownOpen"
+    style="cursor: pointer;"
+  />
+
+  <ul class="dropdown-menu dropdown-menu-end" [class.show]="dropdownOpen" aria-labelledby="profileDropdown">
+    <li class="dropdown-header">Welcome, {{ username }}!</li>
+    <li><a class="dropdown-item" routerLink="/edit-profile">Edit Profile</a></li>
+    <li><button class="dropdown-item" (click)="signOut()">Sign Out</button></li>
+  </ul>
+</div>
+

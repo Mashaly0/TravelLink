@@ -1,0 +1,63 @@
+<div class="container">
+  <h2 class="title">All Tour Packages</h2>
+  <div class="filter-section rotate-in">
+    <h3 class="section-title">Filter Packages</h3>
+    <div class="filter-row">
+      <div class="filter-group">
+        <label for="priceRange" class="filter-label">Price Range</label>
+        <select id="priceRange" class="form-control" [(ngModel)]="selectedPriceRange"
+          (ngModelChange)="onPriceRangeChange()">
+          <option value="">Select Price Range</option>
+          <option *ngFor="let range of priceRanges" [value]="range.label">{{ range.label }}</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="destination" class="filter-label">Destination</label>
+        <select id="destination" class="form-control" [(ngModel)]="selectedDestination"
+          (ngModelChange)="onDestinationChange()">
+          <option value="">Select Destination</option>
+          <option *ngFor="let dest of availableDestinations" [value]="dest">{{ dest }}</option>
+        </select>
+      </div>
+      <button class="btn btn-secondary pulse-hover" (click)="resetFilters()">Reset Filters</button>
+    </div>
+  </div>
+  <div *ngIf="errorMessage" class="alert alert-error bounce-in">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="filteredPackages.length === 0 && !errorMessage" class="alert alert-no-data bounce-in">
+    No tour packages available.
+  </div>
+  <div *ngIf="filteredPackages.length > 0" class="packages-list">
+    <div *ngFor="let pkg of filteredPackages; let i = index" class="package-item bounce-in"
+      style="--item-index: {{i}};">
+      <div class="image-container">
+        <img *ngIf="pkg.photoUrls && pkg.photoUrls.length > 0" [src]="pkg.photoUrls[0]" alt="package-image"
+          class="package-image shimmer-load">
+        <div *ngIf="!pkg.photoUrls || pkg.photoUrls.length === 0" class="no-image">No image available</div>
+      </div>
+      <div class="package-details">
+        <h3 class="package-title">{{ pkg.packageName }}</h3>
+        <p class="package-detail"><strong>Company:</strong> {{ pkg.companyName }}</p>
+        <p class="package-detail"><strong>Price:</strong> ${{ pkg.price }}</p>
+        <p class="package-detail"><strong>Duration:</strong> {{ pkg.durationDays }} days</p>
+        <p class="package-detail"><strong>Start Date:</strong> {{ pkg.startDate | date:'mediumDate' }}</p>
+        <p class="package-detail"><strong>End Date:</strong> {{ pkg.endDate | date:'mediumDate' }}</p>
+        <p class="package-detail"><strong>Destinations:</strong> {{ getDestinationsString(pkg.destinations) }}</p>
+        <button class="btn btn-primary pulse-hover" [routerLink]="['/package-details', pkg.packageId]">View
+          Details</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="filteredPackages.length > 0" class="pagination-section fade-in">
+    <button class="btn btn-secondary pulse-hover">
+      Previous
+    </button>
+    <span *ngFor="let page of [1,2,3,4]" class="page-item" [ngClass]="{'active': currentPage === page}">
+      {{ page }}
+    </span>
+    <button class="btn btn-secondary pulse-hover" [disabled]="currentPage === 4">
+      Next
+    </button>
+  </div>
+</div>

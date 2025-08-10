@@ -1,0 +1,43 @@
+<section class="who-we-are">
+  <div class="container">
+    <div class="section-header">
+      <h2>Who We Are</h2>
+      <p class="subtitle">Exclusive Egypt Travel Experiences</p>
+    </div>
+
+    <div class="about-content">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1503177119275-0aa32b3a9368" alt="Our Tour Guides in Egypt">
+        <div class="experience-badge">
+          <span>Passionate</span>
+          <p>About Showing Egypt's Wonders</p>
+        </div>
+      </div>
+
+      <div class="about-text">
+        <h3>Your Trusted Partner for Authentic Egyptian Adventures</h3>
+        <p>We are a premier Egyptian tour operator specializing in exclusive, curated experiences you won't find with any other company. Through our extensive network of partnerships with top-rated hotels, expert Egyptologists, and local guides, we offer access to unique destinations and experiences unavailable to regular tourists.</p>
+
+        <div class="features-grid">
+          <div *ngFor="let feature of features" class="feature">
+            <i [class]="feature.icon"></i>
+            <h4>{{ feature.title }}</h4>
+            <p>{{ feature.description }}</p>
+          </div>
+        </div>
+
+        <!-- <div class="signature">
+          <img src="assets/images/signature.png" alt="Company Signature" class="signature-img">
+          <p class="signature-name">Ahmed Hamad, Ahmed Elnizily, Abdo Mashaly, Abdo Taher, Marim Ashraf</p>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="partners">
+      <h3>Our Trusted Partners</h3>
+      <div class="partner-logos">
+        <img *ngFor="let partner of partners" [src]="partner.src" [alt]="partner.alt">
+      </div>
+    </div>
+  </div>
+</section>

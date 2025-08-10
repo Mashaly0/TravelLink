@@ -1,0 +1,84 @@
+<div class="hotel-details-container" *ngIf="!loading && hotel; else loadingOrError">
+  <div class="back-button-container">
+    <a routerLink="/tourist/dashboard" class="btn btn-outline-primary back-btn">
+      🔙 Back to Dashboard
+    </a>
+  </div>
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <img *ngIf="hotel.photoUrls && hotel.photoUrls.length" [src]="hotel.photoUrls[0]" class="img-fluid rounded mb-3"
+        alt="Hotel Photo">
+      <div class="d-flex flex-wrap mt-2">
+        <img *ngFor="let img of hotel.photoUrls.slice(1)" [src]="img" class="img-thumbnail m-1"
+          style="max-width: 100px; max-height: 80px;" alt="Hotel Gallery">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h2>{{ hotel.hotelName }}</h2>
+      <p><i class="bi bi-geo-alt"></i> {{ hotel.address }}</p>
+      <p><i class="bi bi-star-fill text-warning"></i> {{ hotel.rating }} / 5</p>
+      <p class="text-muted">{{ hotel.description }}</p>
+      <p><strong>Contact:</strong> {{ hotel.contactEmail }} | {{ hotel.contactPhone }}</p>
+      <p><strong>Available Rooms:</strong> {{ hotel.availableRooms }} / {{ hotel.totalRooms }}</p>
+    </div>
+  </div>
+  <div class="about-hotel-section mb-4">
+    <h4>About this hotel</h4>
+    <p>{{ hotel.description }}</p>
+  </div>
+  <div class="rooms-section">
+    <h4>Available Rooms</h4>
+    <div *ngIf="rooms.length === 0" class="text-muted">No rooms available.</div>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col" *ngFor="let room of rooms">
+        <div class="card h-100">
+          <img *ngIf="room.photoUrls && room.photoUrls.length" [src]="room.photoUrls[0]" class="card-img-top"
+            alt="Room Photo">
+          <div class="card-body">
+            <h5 class="card-title">{{ room.roomType }}</h5>
+            <p class="card-text">Price: ${{ room.pricePerNight }} / night</p>
+            <p class="card-text"><span [class]="room.isAvailable ? 'text-success' : 'text-danger'">{{ room.isAvailable ?
+                'Available' : 'Not Available' }}</span></p>
+            <button class="btn btn-primary" [disabled]="!room.isAvailable" (click)="startBooking(room)">Book
+              Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Booking Modal/Form -->
+<div class="modal show d-block" tabindex="-1" *ngIf="bookingRoom">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Book Room: {{ bookingRoom.roomType }}</h5>
+        <button type="button" class="btn-close" (click)="cancelBooking()"></button>
+      </div>
+      <form (ngSubmit)="submitBooking(bookingForm.value)" #bookingForm="ngForm">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="bookingDate" class="form-label">Booking Date</label>
+            <input type="date" id="bookingDate" name="bookingDate" class="form-control" ngModel required />
+          </div>
+          <div *ngIf="bookingError" class="alert alert-danger">{{ bookingError }}</div>
+          <div *ngIf="bookingSuccess" class="alert alert-success">{{ bookingSuccess }}</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="cancelBooking()">Cancel</button>
+          <button type="submit" class="btn btn-primary"
+            [disabled]="bookingInProgress || bookingForm.invalid">Book</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End Booking Modal/Form -->
+<ng-template #loadingOrError>
+  <div *ngIf="loading" class="text-center my-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <div *ngIf="error && !loading" class="alert alert-danger text-center">{{ error }}</div>
+</ng-template>

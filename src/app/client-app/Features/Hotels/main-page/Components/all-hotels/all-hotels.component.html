@@ -1,0 +1,95 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2 class="title">Hotel Reservation</h2>
+  <!-- Filters Selection -->
+  <div class="filters-selection">
+    <div class="filters-selection-title">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-funnel" aria-hidden="true">
+        <path
+          d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z">
+        </path>
+      </svg>
+      <p>Filter Hotels</p>
+    </div>
+    <div class="filter-selection-list">
+      <div class="filter-selection-item">
+        <p class="filter-label">Location</p>
+        <select name="location" class="form-control" (change)="updateFilter($event, 'city')">
+          <option value="All">All</option>
+          <option value="Giza">Giza</option>
+          <!-- Add more cities as API data grows -->
+        </select>
+      </div>
+      <div class="filter-selection-item">
+        <p class="filter-label">Star Rating</p>
+        <select name="star-rating" class="form-control" (change)="updateFilter($event, 'starRating')">
+          <option value="All">All</option>
+          <option value="5">5 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="2">2 Stars</option>
+        </select>
+      </div>
+      <div class="filter-selection-item">
+        <p class="filter-label">Price Range</p>
+        <select name="price-range" class="form-control" (change)="updateFilter($event, 'price')">
+          <option value="All">All</option>
+          <option value="Above 500$">Above 500$</option>
+          <option value="300$-500$">300$-500$</option>
+          <option value="Less Than 300$">Less Than 300$</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <!-- Filters Results -->
+  <div class="filters-results">
+    <div *ngIf="errorMessage" class="alert alert-error">{{ errorMessage }}</div>
+    <div *ngIf="filteredHotels.length === 0 && !errorMessage" class="alert alert-no-data">No hotels available.</div>
+    <div class="results-grid">
+      <div class="filters-result" *ngFor="let hotel of filteredHotels; let i = index">
+        <!-- Image Slider -->
+        <div class="image-slider" [routerLink]="['/hotel-details', hotel.hotelID]">
+          <div *ngIf="!hotel.photoUrls || hotel.photoUrls.length === 0" class="no-image">
+            No images available
+          </div>
+          <div *ngIf="hotel.photoUrls && hotel.photoUrls.length > 0">
+            <img [src]="hotel.photoUrls[currentImageIndices[i] || 0]" alt="hotel-image" class="hotel-image">
+            <div class="slider-controls" *ngIf="hotel.photoUrls.length > 1">
+              <button class="slider-btn prev" (click)="prevImage(i, $event)">❮</button>
+              <button class="slider-btn next" (click)="nextImage(i, $event)">❯</button>
+            </div>
+          </div>
+        </div>
+        <h3 class="hotel-title">{{ hotel.hotelName }}</h3>
+        <div class="filters-result-location">
+          <i class="fa-solid fa-location-dot"></i>
+          <p>{{ extractCity(hotel.address) }}</p>
+        </div>
+        <div class="filters-result-price-section">
+          <p>100$/night</p> <!-- Placeholder: Update with actual price from API -->
+        </div>
+        <div class="filters-result-star-rating">
+          <i class="fa-solid fa-star" *ngFor="let _ of getStarRatingArray(hotel.rating)"></i>
+          <i class="fa-solid fa-star empty-star" *ngFor="let _ of getEmptyStarRatingArray(hotel.rating)"></i>
+          <p>({{ hotel.rating }} Stars)</p>
+        </div>
+        <p class="description">{{ hotel.description }}</p>
+        <button class="btn btn-primary" (click)="goToDetails(i)">View Details</button>
+      </div>
+    </div>
+  </div>
+  <!-- Pagination Section -->
+  <div *ngIf="filteredHotels.length > 0" class="pagination-section fade-in">
+    <button class="btn btn-secondary pulse-hover">
+      Previous
+    </button>
+    <span *ngFor="let page of [1,2,3,4]" class="page-item" [ngClass]="{'active': currentPage === page}">
+      {{ page }}
+    </span>
+    <button class="btn btn-secondary pulse-hover" [disabled]="currentPage === 4">
+      Next
+    </button>
+  </div>
+</div>

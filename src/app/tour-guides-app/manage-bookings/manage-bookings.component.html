@@ -1,0 +1,47 @@
+<div class="booking-management mb-2">
+    <div class="container">
+        <!-- Start Of Booking Management  -->
+        <div class="back-button-container">
+            <a routerLink="/tour-guide/dashboard" class="btn btn-outline-primary back-btn">
+                🔙 Back to Dashboard
+            </a>
+        </div>
+        <h1>Booking Management</h1>
+        <div class="incoming-bookings mt-5">
+            <h2>Tour Guide Bookings</h2>
+
+            @defer (when isBookingReqFinished) {
+            @if(bookings.length === 0){
+            <div class="loading-container mt-5">
+                <h2>No Bookings Were Made</h2>
+            </div>
+            }@else {
+            <div class="row">
+                @for (item of bookings; track $index) {
+                <div class="col-12 mb-3">
+                    <div class="card package-card d-flex flex-row align-items-center">
+                        <div class="card-body p-3">
+                            <h5 class="card-title mb-1 text-primary">
+                                {{ item.packageName }}
+                            </h5>
+                            <p class="card-text mb-1">
+                                <strong>Booking Date:</strong> {{ item.bookingDate.split("T")[0] }}
+                            </p>
+                            <p class="card-text mb-0">
+                                <strong>Price:</strong> ${{ item.totalPrice }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+            }
+            }@loading (minimum 2s){
+            <div class="loading-container mt-5">
+                <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- End Of Booking Management  -->

@@ -1,0 +1,58 @@
+<!-- Start Of Create Package -->
+<div class="edit-booking pt-5 mb-2">
+    <div class="container">
+        <div class="back-button-container">
+            <a routerLink="/tourist/dashboard" class="btn btn-outline-primary back-btn">
+                🔙 Back to Dashboard
+            </a>
+        </div>
+        <div class="booking-info pt-3">
+            @if (isEditing) {
+            <mat-progress-spinner></mat-progress-spinner>
+            }
+            @defer (when isBookingReqFinished){
+            <h2 class="mb-4 fw-semibold text-purple" [ngClass]="{animate: isBookingReqFinished}">Booking Information
+            </h2>
+            <form *ngIf="isBookingReqFinished" (ngSubmit)="saveData()" class="d-flex flex-column gap-3 animate-x">
+                <div>
+                    <label class="form-label" [ngClass]="{animate: isBookingReqFinished}">Booking Date</label>
+                    <input type="date" class="form-control border-purple" [(ngModel)]="BookingDate" name="date"
+                        placeholder="Enter Booking Date" [ngClass]="{animate: isBookingReqFinished}">
+                </div>
+
+                <div>
+                    <label class="form-label" [ngClass]="{animate: isBookingReqFinished}">Price</label>
+                    <input type="number" class="form-control border-purple" [(ngModel)]="booking.totalPrice"
+                        name="price" placeholder="Enter Booking Price" [ngClass]="{animate: isBookingReqFinished}">
+                </div>
+
+                <div>
+                    <label class="form-label" [ngClass]="{animate: isBookingReqFinished}">Status</label>
+                    <select class="form-select border-purple" [(ngModel)]="booking.status" name="status"
+                        [ngClass]="{animate: isBookingReqFinished}">
+                        <option [ngValue]="'Pending'" [ngClass]="{animate: isBookingReqFinished}">Pending</option>
+                        <option [ngValue]="'Confirmed'" [ngClass]="{animate: isBookingReqFinished}">Confirmed</option>
+                        <option [ngValue]="'Cancelled'" [ngClass]="{animate: isBookingReqFinished}">Cancelled</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-purple align-self-end mt-3 px-4 py-2 animate-x"
+                    [ngClass]="{animate: isBookingReqFinished}" *ngIf="isBookingReqFinished">Next</button>
+            </form>
+            }
+
+            @placeholder {
+            <div class="loading-container mt-5">
+                <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            }
+
+            @loading(minimum 2s) {
+            <div class="loading-container mt-5">
+                <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- End Of Create Package -->

@@ -1,0 +1,433 @@
+<nav class="navbar navbar-expand-lg fancy-navbar sticky-top shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
+            <i class="bi bi-globe2"></i>
+            Egypt Trip
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavbar"
+            aria-controls="topNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="topNavbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li>
+                    <button class="btn fancy-btn d-flex align-items-center gap-1" routerLink="/admin/bookings">
+                        <i class="fa fa-box-arrow-right"></i>
+                        Bookings
+                    </button>
+                </li>
+                <li>
+                    <button class="btn fancy-btn d-flex align-items-center gap-1" routerLink="/admin/guides">
+                        <i class="fa fa-box-arrow-right"></i>
+                        Tour Guides
+                    </button>
+                </li>
+                <li>
+                    <button class="btn fancy-btn d-flex align-items-center gap-1" routerLink="/admin/hotels">
+                        <i class="fa fa-box-arrow-right"></i>
+                        Hotels
+                    </button>
+                </li>
+            </ul>
+            <button class="btn fancy-btn d-flex align-items-center gap-1" (click)="logout()">
+                <i class="bi bi-box-arrow-right"></i>
+                Logout
+            </button>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid fancy-fade-in">
+    <div class="row">
+        <!-- Navbar -->
+
+        <!-- Sidebar -->
+        <div class="col-md-3 sidebar-container">
+            <div class="card shadow-lg h-100 fancy-sidebar p-4">
+                <h4 class="fw-bold mb-4 border-bottom pb-2">🏨 Admin Dashboard</h4>
+                <div class="d-grid gap-3">
+                    <button class="btn btn-lg rounded-pill fancy-btn" routerLink="/admin/bookings"
+                        style="--btn-index: 1;">
+                        Bookings
+                    </button>
+                    <button class="btn btn-lg rounded-pill fancy-btn" routerLink="/admin/guides"
+                        style="--btn-index: 1;">
+                        Tour Guides
+                    </button>
+                    <button class="btn btn-lg rounded-pill fancy-btn" routerLink="/admin/hotels"
+                        style="--btn-index: 1;">
+                        Hotels
+                    </button>
+                    <button class="btn btn-lg rounded-pill fancy-btn" (click)="logout()" style="--btn-index: 1;">
+                        🚪 Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9 pt-5 px-4 main-content my-5">
+            <!-- Performance Cards -->
+            <div class="row mb-4 g-3">
+                @defer (when isAdminReqFinished) {
+                <div class="col-md-3">
+                    <div class="fancy-card text-center" style="--card-index: 1;">
+                        <h6>Total Bookings</h6>
+                        <h3>{{admin.totalBookings}}</h3>
+                    </div>
+                </div>
+                } @placeholder {
+                <div class="loading-container mt-5">
+                    <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                </div>
+                } @loading (minimum 3s) {
+                <div class="loading-container mt-5">
+                    <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                </div>
+                }
+
+                @defer (when isAdminReqFinished) {
+                <div class="col-md-3">
+                    <div class="fancy-card text-center" style="--card-index: 2;">
+                        <h6>Profit</h6>
+                        <h3>${{admin.profit}}</h3>
+                    </div>
+                </div>
+                } @placeholder {
+                <div class="loading-container mt-5">
+                    <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                </div>
+                } @loading (minimum 3s) {
+                <div class="loading-container mt-5">
+                    <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                </div>
+                }
+                @defer (when isAdminReqFinished) {
+                <div class="col-md-3">
+                    <div class="fancy-card text-center" style="--card-index: 2;">
+                        <h6>Total Packages</h6>
+                        <h3>{{totalPackages}}</h3>
+                    </div>
+                </div>
+                } @placeholder {
+                <div class="loading-container mt-5">
+                    <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                </div>
+                } @loading (minimum 3s) {
+                <div class="loading-container mt-5">
+                    <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                </div>
+                }
+
+                @defer (when isAdminReqFinished) {
+                <div class="col-md-3">
+                    <div class="fancy-card text-center" style="--card-index: 3;">
+                        <h6>Total Reviews</h6>
+                        <h3>{{admin.totalReviews}}</h3>
+                    </div>
+                </div>
+                } @placeholder {
+                <div class="loading-container mt-5">
+                    <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                </div>
+                } @loading (minimum 3s) {
+                <div class="loading-container mt-5">
+                    <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                </div>
+                }
+
+                @defer (when isAdminReqFinished) {
+                <div class="col-md-3">
+                    <div class="fancy-card text-center" style="--card-index: 4;">
+                        <h6>Total Guides</h6>
+                        <h3>{{totalGuides}}</h3>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="fancy-card text-center" style="--card-index: 4;">
+                        <h6>Total Hotels</h6>
+                        <h3>{{totalHotels}}</h3>
+                    </div>
+                </div>
+                } @placeholder {
+                <div class="loading-container mt-5">
+                    <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                </div>
+                } @loading (minimum 3s) {
+                <div class="loading-container mt-5">
+                    <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                </div>
+                }
+            </div>
+
+            <div class="testimonials mt-5">
+                <h2 class="section-heading">Recent Reviews</h2>
+                <div class="row mt-5">
+                    @defer (when isAdminReqFinished) {
+                    @for (item of admin.recentReviews; track $index) {
+                    <div class="col-12 my-3">
+                        <div class="testimonial-card fade-in-up delay-{{$index}}">
+                            <div class="testimonial-content">
+                                @if (item.guideName) {
+                                <h2>{{item.guideName}}</h2>
+                                }
+                                @if (item.hotelName) {
+                                <h2>{{item.hotelName}}</h2>
+                                }
+                                @if (item.packageName) {
+                                <h2>{{item.packageName}}</h2>
+                                }
+                                <p>{{item.comment}}</p>
+                            </div>
+                            <div class="rating-stars">
+                                <ng-container *ngFor="let i of [0,1,2,3,4]">
+                                    <svg [ngClass]="{ 'filled': i < item.rating!, 'empty': i >= item.rating }"
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 .587l3.668 7.568L24 9.75l-6 5.797L19.335 24 12 19.897 4.665 24 6 15.547 0 9.75l8.332-1.595z" />
+                                    </svg>
+                                </ng-container>
+                                <span class="rating-value">({{item.rating}})</span>
+                            </div>
+                            <div class="testimonial-date">
+                                <p>{{item.reviewDate.split('T')[0]}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                    } @placeholder {
+                    <div class="loading-container mt-5">
+                        <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                    </div>
+                    } @loading (minimum 3s) {
+                    <div class="loading-container mt-5">
+                        <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                    </div>
+                    }
+                </div>
+            </div>
+
+            <div class="top-guides">
+                <h5 class="section-heading">Top Tour Guides</h5>
+                <div class="fancy-section mb-4">
+                    <div class="table-responsive">
+                        @defer (when isAdminReqFinished) {
+                        <table class="table table-hover fancy-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>License Number</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (item of admin.topTourGuides; track $index) {
+                                <tr>
+                                    <td>{{item.guideName}}</td>
+                                    <td>{{item.licenseNumber}}</td>
+                                    <td>{{item.contactEmail}}</td>
+                                    <td>{{item.contactPhone}}</td>
+                                    <td>
+                                        <button class="bg-success rounded-4 mx-2" style="color: white; border: none;"
+                                            (click)="verifyUser(item.guideID!)">Confirm</button>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                        } @placeholder {
+                        <div class="loading-container mt-5">
+                            <mat-progress-spinner color="accent" diameter="40"
+                                mode="indeterminate"></mat-progress-spinner>
+                        </div>
+                        } @loading (minimum 3s) {
+                        <div class="loading-container mt-5">
+                            <mat-progress-spinner color="accent" diameter="40"
+                                mode="indeterminate"></mat-progress-spinner>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="all-guides">
+                <h5 class="section-heading">All Tour Guides</h5>
+                <div class="fancy-section mb-4">
+                    <div class="table-responsive">
+                        @defer (when isAllGuidesReqFinished) {
+                        <table class="table table-hover fancy-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>License Number</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (item of tourGuides; track $index) {
+                                <tr>
+                                    <td>{{item.guideName}}</td>
+                                    <td>{{item.licenseNumber}}</td>
+                                    <td>{{item.contactEmail}}</td>
+                                    <td>{{item.contactPhone}}</td>
+                                    <td>
+                                        <button class="bg-success rounded-4 mx-2" style="color: white; border: none;"
+                                            (click)="verifyUser(item.guideID!)">Confirm</button>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                        } @placeholder {
+                        <div class="loading-container mt-5">
+                            <mat-progress-spinner color="accent" diameter="40"
+                                mode="indeterminate"></mat-progress-spinner>
+                        </div>
+                        } @loading (minimum 3s) {
+                        <div class="loading-container mt-5">
+                            <mat-progress-spinner color="accent" diameter="40"
+                                mode="indeterminate"></mat-progress-spinner>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="top-hotels mt-4">
+                <h2 class="section-heading">Top Hotels</h2>
+                <div class="row g-4">
+                    @defer (when isAdminReqFinished) {
+                    @for (item of admin.topHotels; track $index) {
+                    <div class="col-md-4">
+                        <div class="hotel-card card" [routerLink]="['/hotel-details', item.hotelID]">
+                            <img [src]="item.photoUrls[0]" class="card-img-top" alt="Hotel Image">
+                            <div class="card-body">
+                                <h5 class="card-title">{{item.hotelName}}</h5>
+                                <h5 class="card-title">{{item.contactEmail}}</h5>
+                                <div class="rating-stars">
+                                    <ng-container *ngFor="let i of [0,1,2,3,4]">
+                                        <svg [ngClass]="{ 'filled': i < item.rating!, 'empty': i >= item.rating }"
+                                            xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 .587l3.668 7.568L24 9.75l-6 5.797L19.335 24 12 19.897 4.665 24 6 15.547 0 9.75l8.332-1.595z" />
+                                        </svg>
+                                    </ng-container>
+                                    <span class="rating-value">({{item.rating}})</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                    } @placeholder {
+                    <div class="loading-container mt-5">
+                        <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                    </div>
+                    } @loading (minimum 3s) {
+                    <div class="loading-container mt-5">
+                        <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                    </div>
+                    }
+                </div>
+            </div>
+
+            <div class="all-hotels mt-4">
+                <h2 class="section-heading">All Hotels</h2>
+                <div class="row g-4">
+                    @defer (when isAllHotelsReqFinished) {
+                    @for (item of hotels; track $index) {
+                    <div class="col-md-4">
+                        <div class="hotel-card card" [routerLink]="['/hotel-details', item.hotelID]">
+                            <img [src]="item.photoUrls[0]" class="card-img-top" alt="Hotel Image">
+                            <div class="card-body">
+                                <h5 class="card-title">{{item.hotelName}}</h5>
+                                <h5 class="card-title">{{item.contactEmail}}</h5>
+                                <div class="rating-stars">
+                                    <ng-container *ngFor="let i of [0,1,2,3,4]">
+                                        <svg [ngClass]="{ 'filled': i < item.rating!, 'empty': i >= item.rating }"
+                                            xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 .587l3.668 7.568L24 9.75l-6 5.797L19.335 24 12 19.897 4.665 24 6 15.547 0 9.75l8.332-1.595z" />
+                                        </svg>
+                                    </ng-container>
+                                    <span class="rating-value">({{item.rating}})</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                    } @placeholder {
+                    <div class="loading-container mt-5">
+                        <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                    </div>
+                    } @loading (minimum 3s) {
+                    <div class="loading-container mt-5">
+                        <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                    </div>
+                    }
+                </div>
+            </div>
+
+            <div class="top-packages mt-4">
+                <h2 class="section-heading">Top Packages</h2>
+                <div class="row g-4">
+                    @defer (when isAdminReqFinished) {
+                    @for (item of admin.topTourPackages; track $index) {
+                    <div class="col-md-4">
+                        <div class="package-card card" [routerLink]="['/package-details', item.packageId]">
+                            <img [src]="item.photoUrls[0]" class="card-img-top" alt="Package Image">
+                            <div class="card-body">
+                                <h5 class="card-title">{{item.packageName}}</h5>
+                                <p class="card-text">${{item.price}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                    } @placeholder {
+                    <div class="loading-container mt-5">
+                        <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                    </div>
+                    } @loading (minimum 3s) {
+                    <div class="loading-container mt-5">
+                        <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+                    </div>
+                    }
+                </div>
+            </div>
+            <div class="charts mt-4">
+                <h2 class="section-heading">Statistics</h2>
+                <div class="row mt-5">
+                    <div class="col-md-6 mb-4">
+                        <div class="card fancy-card">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Monthly Packages</h5>
+                                <canvas #barChartCanvas></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card fancy-card">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Booking Status Distribution</h5>
+                                <canvas #pieChartCanvas></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card fancy-card">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Hotels Rating Distribution</h5>
+                                <canvas #hotelsChartCanvas></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

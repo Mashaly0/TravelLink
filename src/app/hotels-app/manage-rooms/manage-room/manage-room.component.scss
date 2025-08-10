@@ -1,0 +1,116 @@
+.fancy-form {
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    color: #343a40;
+    background: linear-gradient(to bottom right, #f0f4f8, #ffffff);
+    border-radius: 20px;
+    padding: 2rem;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.fancy-form h1,
+.fancy-form h2 {
+    color: #084C61;
+    font-weight: 700;
+    text-shadow: 1px 1px 0 #e1e1e1;
+}
+
+.photo-slider {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.photo {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.photo-slider img {
+    height: 120px;
+    width: 120px;
+    border-radius: 12px;
+    border: 2px solid #ced4da;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.photo-slider img:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(13, 110, 253, 0.4);
+}
+
+input.form-control,
+input[type="file"] {
+    border-radius: 10px;
+    border: 1px solid #adb5bd;
+    padding: 12px 15px;
+    transition: all 0.3s;
+    background-color: #fefefe;
+}
+
+input.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 8px rgba(13, 110, 253, 0.25);
+}
+
+.custom-file {
+    height: 150px;
+    background-color: #f8f9fa;
+    border: 2px dashed #ced4da;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.custom-file:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+}
+
+button.btn {
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(to right, #0d6efd, #6610f2);
+    color: #fff;
+    border: none;
+}
+
+button.btn:hover {
+    background: linear-gradient(to left, #0d6efd, #6610f2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+}
+
+.table-spinner {
+    height: 150px;
+    position: relative;
+}
+
+.table-spinner>mat-progress-spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

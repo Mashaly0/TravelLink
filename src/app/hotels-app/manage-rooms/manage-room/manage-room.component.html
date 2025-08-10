@@ -1,0 +1,49 @@
+<div class="manage-profile fancy-form mb-5">
+    <div class="container py-5 px-4 rounded-4 shadow-lg bg-light-subtle">
+        <h1 class="mb-4 fw-bold text-primary text-center">🛏️ Room Profile</h1>
+
+        <!-- Loading Spinner -->
+        <div *ngIf="!isRoomReqFinished" class="d-flex justify-content-center align-items-center py-5">
+            <mat-progress-spinner diameter="40" color="accent" mode="indeterminate"></mat-progress-spinner>
+        </div>
+
+        <!-- Room Info Content -->
+        <div *ngIf="isRoomReqFinished && room">
+            <!-- Photo Gallery -->
+            <div class="photo-slider mb-4 d-flex justify-content-center flex-wrap gap-3">
+                <div class="photo shadow-sm border rounded-3 overflow-hidden" *ngFor="let item of room.photoUrls">
+                    <img [src]="item" alt="Room Photo" class="img-fluid" style="max-height: 200px;" />
+                </div>
+            </div>
+
+            <p class="text-muted text-center mb-4">Manage your room details and images below</p>
+
+            <h2 class="fw-semibold mb-3">Room Info</h2>
+
+            <form (ngSubmit)="editRoom()" class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label fw-medium">Room Type</label>
+                    <input type="text" class="form-control border-primary" placeholder="Enter Room Type"
+                        [(ngModel)]="room.roomType" name="roomType" required value="{{room.roomType}}" />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-medium">Price Per Night</label>
+                    <input type="number" class="form-control border-primary" placeholder="Enter Price Per Night"
+                        [(ngModel)]="room.pricePerNight" name="pricePerNight" required />
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label fw-medium">Add Images</label>
+                    <input type="file" class="form-control" multiple (change)="addPhotosToForm($event)" #fileInput />
+                </div>
+
+                <div class="col-12 text-end">
+                    <button class="btn btn-gradient btn-lg rounded-pill mt-3 px-5" type="submit">
+                        💾 Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

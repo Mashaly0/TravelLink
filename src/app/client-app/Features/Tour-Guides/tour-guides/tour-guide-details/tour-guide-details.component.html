@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2 class="title">{{ tourGuide?.guideName || 'Tour Guide Details' }}</h2>
+  <div *ngIf="errorMessage" class="alert alert-error">{{ errorMessage }}</div>
+  <div *ngIf="!tourGuide && !errorMessage" class="alert alert-loading">Loading tour guide details...</div>
+  <div *ngIf="tourGuide" class="guide-details card">
+    <!-- Image Slider -->
+    <div class="image-slider">
+      <div *ngIf="!tourGuide.photoUrls || tourGuide.photoUrls.length === 0" class="no-image">
+        No images available
+      </div>
+      <div *ngIf="tourGuide.photoUrls && tourGuide.photoUrls.length > 0">
+        <img [src]="tourGuide.photoUrls[currentImageIndex]" alt="guide-image" class="guide-image">
+        <div class="slider-controls" *ngIf="tourGuide.photoUrls.length > 1">
+          <button class="slider-btn prev" (click)="prevImage()">❮</button>
+          <button class="slider-btn next" (click)="nextImage()">❯</button>
+        </div>
+      </div>
+    </div>
+    <h3 class="guide-title">{{ tourGuide.guideName }}</h3>
+    <p class="guide-detail"><strong>License Number:</strong> {{ tourGuide.licenseNumber }}</p>
+    <p class="guide-detail"><strong>Languages:</strong> {{ tourGuide.languages }}</p>
+    <p class="guide-detail"><strong>Areas Covered:</strong> {{ tourGuide.areasCovered }}</p>
+    <p class="guide-detail"><strong>Price per Hour:</strong> ${{ tourGuide.pricePerHour }}</p>
+    <p class="availability">
+      <strong>Availability:</strong>
+      <span [ngClass]="tourGuide.isAvailable ? 'available' : 'unavailable'">
+        {{ tourGuide.isAvailable ? 'Available' : 'Not Available' }}
+        <i [ngClass]="tourGuide.isAvailable ? 'fa-solid fa-check' : 'fa-solid fa-times'"
+          [class.available-icon]="tourGuide.isAvailable" [class.unavailable-icon]="!tourGuide.isAvailable"></i>
+      </span>
+    </p>
+    <div class="guide-rating">
+      <i class="fa-solid fa-star" *ngFor="let _ of getStarRatingArray(tourGuide.averageRating)"></i>
+      <i class="fa-solid fa-star empty-star" *ngFor="let _ of getEmptyStarRatingArray(tourGuide.averageRating)"></i>
+      <p>({{ tourGuide.averageRating }} Stars)</p>
+    </div>
+    <p class="guide-detail"><strong>Contact Email:</strong> {{ tourGuide.contactEmail }}</p>
+    <p class="guide-detail"><strong>Contact Phone:</strong> {{ tourGuide.contactPhone }}</p>
+    <p class="guide-detail"><strong>Total Bookings:</strong> {{ tourGuide.totalBookings }}</p>
+    <!-- Reviews Section -->
+    <div class="guide-reviews">
+      <h4 class="section-title">Reviews</h4>
+      <div *ngIf="reviews.length === 0" class="alert alert-no-data">No reviews available.</div>
+      <div *ngIf="reviews.length > 0" class="reviews-list">
+        <div *ngFor="let review of reviews" class="review-item card">
+          <div class="review-rating">
+            <i class="fa-solid fa-star" *ngFor="let _ of getStarRatingArray(review.rating)"></i>
+            <i class="fa-solid fa-star empty-star" *ngFor="let _ of getEmptyStarRatingArray(review.rating)"></i>
+            <p>({{ review.rating }} Stars)</p>
+          </div>
+          <p class="review-detail"><strong>Comment:</strong> {{ review.comment }}</p>
+          <p class="review-detail"><strong>By:</strong> {{ review.userEmail }}</p>
+          <p class="review-detail"><strong>Date:</strong> {{ review.reviewDate | date:'medium' }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="button-group">
+      <button class="btn btn-primary" (click)="bookTourGuide(tourGuide.guideID)"
+        [disabled]="!tourGuide.isAvailable">Book Tour Guide</button>
+      <button class="btn btn-secondary" (click)="goBack()">Back to Tour Guides</button>
+    </div>
+  </div>
+</div>

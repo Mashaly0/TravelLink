@@ -1,0 +1,95 @@
+<div class="manage-profile py-5">
+    <div class="container p-5 rounded-4 shadow-lg animate__animated animate__fadeIn">
+        <div class="back-button-container mb-4">
+            <a routerLink="/tour-guide/dashboard" class="btn btn-outline-primary back-btn">
+                🔙 Back to Dashboard
+            </a>
+        </div>
+        <h1 class="text-center text-primary fw-bold mb-3">🏨 Tour Guide Profile</h1>
+        <p class="text-center text-muted mb-5">Manage your Details</p>
+
+        @defer (when isGuideReqFinished) {
+        <div class="photo-slider mb-4">
+            @for (item of tourGuide.photoUrls; track $index) {
+            <div class="photo">
+                <img [src]="item" alt="Profile Photo" />
+            </div>
+            }
+        </div>
+
+        <h2 class="text-secondary fw-semibold mb-4">🖼 Profile Images</h2>
+        <form (ngSubmit)="editProfile()" class="row g-4">
+            <div class="col-md-12">
+                <label>Tour Guide Name</label>
+                <input type="text" class="form-control" placeholder="Enter Tour Guide Name"
+                    [(ngModel)]="tourGuide.guideName" name="Tour Guide" />
+            </div>
+            <div class="col-md-12">
+                <label>Tour Guide Licesne</label>
+                <input type="text" class="form-control" placeholder="Enter Tour Guide Name"
+                    [(ngModel)]="tourGuide.licenseNumber" name="Tour Guide" />
+            </div>
+            <div class="col-md-12">
+                <label>Languages</label>
+                <div class="language-labels mt-2">
+                    @for (item of allLanguages; track $index) {
+                    <div class="language-label">
+                        <input type="checkbox" [value]="item" [checked]="myLanguages.includes(item)"
+                            (change)="editLanguages(item)" name="languages" />
+                        <label>{{item}}</label>
+
+                    </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label>Languages</label>
+                <div class="destination-labels mt-2">
+                    @for (item of allDestinations; track $index) {
+                    <div class="destination-label">
+                        <input type="checkbox" [value]="item" [checked]="myDestinations.includes(item)"
+                            (change)="editDestination(item)" name="destinations" />
+                        <label>{{item}}</label>
+
+                    </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label>Price Per Hour</label>
+                <input type="text" class="form-control" placeholder="Enter Tour Guide Name"
+                    [(ngModel)]="tourGuide.pricePerHour" name="Tour Guide" />
+            </div>
+
+            <div class="col-md-6">
+                <label>Tour Guide Email</label>
+                <input type="email" class="form-control" placeholder="Enter Email" [(ngModel)]="tourGuide.contactEmail"
+                    name="email" />
+            </div>
+
+            <div class="col-md-6">
+                <label>Tour Guide Phone</label>
+                <input type="tel" class="form-control" placeholder="Enter Phone" [(ngModel)]="tourGuide.contactPhone"
+                    name="phone" />
+            </div>
+
+            <div class="col-12">
+                <label>Upload Photos</label>
+                <input type="file" class="form-control file-input-fancy" multiple (change)="addPhotosToForm($event)" />
+            </div>
+
+            <div class="text-end mt-4">
+                <button class="btn btn-primary px-4 py-2 rounded-pill shadow" type="submit">💾 Save Changes</button>
+            </div>
+        </form>
+        }@placeholder {
+        <div class="spinner">
+            <mat-progress-spinner diameter="40" color="accent" mode="indeterminate"></mat-progress-spinner>
+        </div>
+        }@loading(minimum 3s) {
+        <div class="spinner">
+            <mat-progress-spinner diameter="40" color="accent" mode="indeterminate"></mat-progress-spinner>
+        </div>
+        }
+    </div>
+</div>

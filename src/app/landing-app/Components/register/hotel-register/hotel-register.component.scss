@@ -1,0 +1,89 @@
+/* ✨ Card and Header Styling */
+.hotel-register {
+    width: 90%;
+    margin: 50px auto;
+}
+
+.card {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.01);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b);
+    color: #fff;
+    padding: 1.5rem;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-weight: 700;
+}
+
+/* 🧩 Form Styling */
+label {
+    font-weight: 600;
+    color: #333;
+}
+
+input.form-control,
+textarea.form-control {
+    border-radius: 0.5rem;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+input.form-control:focus,
+textarea.form-control:focus {
+    border-color: #17a2b8;
+    box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.25);
+}
+
+/* ✅ Button Styling */
+.btn.btn-info {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn.btn-info:hover {
+    background: linear-gradient(135deg, #ff6b6b, #dc3545);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(23, 162, 184, 0.3);
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+    .card {
+        margin: 0 15px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .card-header h3 {
+        font-size: 1.4rem;
+    }
+}
+
+.fancy-map {
+    height: 250px;
+    background: #dee2e6;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}

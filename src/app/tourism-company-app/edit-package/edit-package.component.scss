@@ -1,0 +1,109 @@
+.package-info {
+    position: relative;
+}
+
+.create-package .container {
+    padding: 10px 50px;
+}
+
+.create-package .container h1 {
+    font-size: 32px;
+}
+
+.create-package .container h1,
+.package-info h2 {
+    color: black;
+}
+
+.create-package .container p {
+    color: grey;
+}
+
+label {
+    color: black;
+}
+
+textarea {
+    padding: 8px;
+    border-radius: 8px;
+    resize: none;
+    width: 100%;
+    background-color: antiquewhite;
+}
+
+input {
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+form>button {
+    background-color: antiquewhite;
+    color: black;
+    border: 1px solid black;
+    padding: 8px 30px;
+    margin-top: 20px;
+    font-weight: bold;
+    border-radius: 50px
+}
+
+.dest-checkbox input {
+    width: 20px;
+    height: 20px;
+}
+
+.dest-checkboxes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.dest-checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.photo-slider {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 7px;
+    border: 1px solid black;
+    position: relative;
+}
+
+.photo img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-slider button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 0 5px;
+    border-radius: 7px;
+    background-color: black;
+}
+
+.photo-slider button svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+}
